@@ -1,0 +1,12 @@
+.main {
+  max-width: 1000px;
+  width: 100%;
+  background-color: rgb(198, 156, 240);
+}
+
+.todoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,37 @@
+.main {
+  background-image: linear-gradient(to bottom, #e485ff, #db7bfe, #d271fe, #c968fd, #be5efd);
+  height: 300px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dateTimeWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  .dayNum {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0 4px;
+  }
+  .dayMonthYearWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin: 0 4px;
+    font-size: 1.1rem;
+
+    .day {
+    }
+    .monthYear {
+      color: rgba(white, 0.9);
+    }
+  }
+}
