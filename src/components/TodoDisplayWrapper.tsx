@@ -6,6 +6,8 @@ function TodoDisplayWrapper(props: TodoDisplayProps) {
   return (
     <div className={styles.main}>
       <ToDo />
+      <ToDo />
+      <ToDo />
     </div>
   );
 }

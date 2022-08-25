@@ -1,11 +1,16 @@
 .main {
-  background-image: linear-gradient(to bottom, #e485ff, #db7bfe, #d271fe, #c968fd, #be5efd);
-  height: 300px;
-  width: 100%;
-
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.background {
+  z-index: -1;
+  position: absolute;
+  background-image: linear-gradient(to right top, #c777b9, #ba83ca, #aa8fd8, #79b3f4, #69bff8, #52cffe, #41dfff);
+  height: 350px;
+  width: 100%;
 }
 
 .dateTimeWrapper {
