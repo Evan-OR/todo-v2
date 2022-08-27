@@ -9,6 +9,11 @@ function ToDo() {
       </div>
       <div className={styles.title}>Prepare for tech interview</div>
       <div className={styles.due}>3 Days</div>
+      <div className={styles.options}>
+        <div className={styles.optionSquare}></div>
+        <div className={styles.optionSquare}></div>
+        <div className={styles.optionSquare}></div>
+      </div>
     </div>
   );
 }

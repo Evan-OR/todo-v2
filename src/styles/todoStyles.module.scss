@@ -1,3 +1,5 @@
+$mainColour: #292929;
+
 .main {
   max-width: 1000px;
   width: 100%;
@@ -17,7 +19,15 @@
   background-color: white;
   border-radius: 6px;
 
-  box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.07);
+  box-shadow: 2px 3px 2px rgba($mainColour, 0.07);
+
+  transition: all;
+  transition-duration: 0.2s;
+
+  &:hover {
+    box-shadow: 2px 3px 2px rgba($mainColour, 0.27);
+    transform: scale(1.003);
+  }
 }
 
 .icon {
@@ -36,4 +46,29 @@
 
 .due {
   flex: 1;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2px 8px;
+
+  transition: all;
+  transition-duration: 0.5s;
+
+  .optionSquare {
+    margin: 2px 0px;
+    width: 5px;
+    height: 5px;
+    background-color: $mainColour;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba($mainColour, $alpha: 0.14);
+    border-radius: 20px;
+  }
 }
