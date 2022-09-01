@@ -1,3 +1,4 @@
+import AddTodoButton from './components/AddTodoButton';
 import AppHeader from './components/AppHeader';
 import DateAndTimeDisplay from './components/DateAndTimeDisplay';
 import TodoDisplayWrapper from './components/TodoDisplayWrapper';
@@ -8,6 +9,7 @@ function App() {
     <div className="appWrapper">
       {/* <AppHeader /> */}
       <DateAndTimeDisplay />
+      <AddTodoButton />
       <TodoDisplayWrapper />
     </div>
   );

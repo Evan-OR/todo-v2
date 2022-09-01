@@ -1,0 +1,29 @@
+.defaultBtn {
+  display: flex;
+  align-items: center;
+
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 4px 4px 8px #d9d9d9, -4px -4px 8px #ffffff;
+
+  font-weight: bold;
+  padding: 10px 12px;
+  user-select: none;
+  cursor: pointer;
+
+  .icon {
+    margin-left: 5px;
+  }
+
+  &:hover {
+    border-radius: 10px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 4px 4px 8px #d9d9d9, -4px -4px 8px #ffffff;
+  }
+
+  &:active {
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: inset 4px 4px 8px #d9d9d9, inset -4px -4px 8px #ffffff;
+  }
+}
