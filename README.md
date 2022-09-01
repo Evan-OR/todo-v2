@@ -1,3 +1,5 @@
-# To Do list app v2 with React and Typescript
+# To Do list app v2
 
-Program to help sort and organise tasks
+Re-creating my todo app focusing on creating a better UI & UX experience.
+
+Created with React & Typescript
