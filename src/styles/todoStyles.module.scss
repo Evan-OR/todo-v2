@@ -46,11 +46,13 @@ $mainColour: #292929;
 
   .editIcon {
     opacity: 0;
+    width: 18px;
+    fill: rebeccapurple;
   }
 
   &:hover {
     border-radius: 10px;
-    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
     box-shadow: 4px 4px 8px #d9d9d9, -4px -4px 8px #ffffff;
 
     .editIcon {

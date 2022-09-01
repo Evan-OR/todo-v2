@@ -1,10 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/appHeaderStyles.module.scss';
 
 function DateAndTimeDisplay() {
-  const d = new Date();
+  const [time, setTime] = useState<string>('00:00');
+  let d = new Date();
+
   useEffect(() => {
-    // console.log(Date.);
+    setTime(getTime());
+    setInterval(() => {
+      d = new Date();
+      setTime(getTime());
+    }, 10000);
   }, []);
 
   const getDayOfWeek = (num: number) => {
@@ -21,8 +27,17 @@ function DateAndTimeDisplay() {
     return num > 9 ? num : '0' + num;
   };
 
+  const getTime = () => {
+    const lessThanTenCheck = (num: number) => (num > 9 ? num : '0' + num);
+
+    let minutes = lessThanTenCheck(d.getMinutes());
+    let hours = lessThanTenCheck(d.getHours());
+
+    return `${hours}:${minutes}`;
+  };
+
   return (
-    <div>
+    <div className={styles.componentWrapper}>
       <div className={styles.dateTimeWrapper}>
         <div className={styles.dayNum}>{formatDate(d.getDate())}</div>
         <div className={styles.dayMonthYearWrapper}>
@@ -32,6 +47,7 @@ function DateAndTimeDisplay() {
           </div>
         </div>
       </div>
+      <div className={styles.time}>{time}</div>
     </div>
   );
 }

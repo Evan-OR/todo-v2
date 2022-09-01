@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+.componentWrapper {
+  margin-bottom: 30px;
+}
+
 .dateTimeWrapper {
   display: flex;
   justify-content: center;
@@ -38,4 +42,7 @@
       opacity: 0.8;
     }
   }
+}
+.time {
+  opacity: 0.8;
 }
