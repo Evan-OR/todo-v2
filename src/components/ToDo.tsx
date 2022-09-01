@@ -1,19 +1,16 @@
 import styles from '../styles/todoStyles.module.scss';
-import icon from '../img/code-solid.svg';
+import programmingIcon from '../img/code-solid.svg';
+import editIcon from '../img/pen-to-square-solid.svg';
 
 function ToDo() {
   return (
     <div className={styles.todoWrapper}>
       <div className={styles.icon}>
-        <img src={icon} width={'26px'}></img>
+        <img src={programmingIcon} width={'22px'}></img>
       </div>
       <div className={styles.title}>Prepare for tech interview</div>
       <div className={styles.due}>3 Days</div>
-      <div className={styles.options}>
-        <div className={styles.optionSquare}></div>
-        <div className={styles.optionSquare}></div>
-        <div className={styles.optionSquare}></div>
-      </div>
+      <img className={styles.editIcon} src={editIcon} alt="Edit Icon" width={'18px'} color={'#fffff'}></img>
     </div>
   );
 }

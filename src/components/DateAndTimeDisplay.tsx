@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import styles from '../styles/appHeaderStyles.module.scss';
 
 function DateAndTimeDisplay() {
+  useEffect(() => {
+    // console.log(Date.);
+  }, []);
+
   return (
     <div>
       <div className={styles.dateTimeWrapper}>

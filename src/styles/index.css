@@ -4,6 +4,8 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  color: #353535;
 }
 * {
   box-sizing: border-box;

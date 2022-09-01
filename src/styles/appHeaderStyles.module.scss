@@ -17,7 +17,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
 
   .dayNum {
     font-size: 4rem;
@@ -36,7 +35,7 @@
     .day {
     }
     .monthYear {
-      color: rgba(white, 0.9);
+      opacity: 0.8;
     }
   }
 }
