@@ -18,7 +18,8 @@
     margin-left: 5px;
     width: 18px;
     transition-property: transform;
-    transition-duration: 0.5s;
+    transition-duration: 0.34s;
+    transition-timing-function: cubic-bezier(0.07, 0.55, 0.58, 1);
   }
 
   &:hover {

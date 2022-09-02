@@ -13,18 +13,18 @@ function DateAndTimeDisplay() {
     }, 10000);
   }, []);
 
-  const getDayOfWeek = (num: number) => {
+  const getDayOfWeek = (num: number): string => {
     const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     return daysOfTheWeek[num];
   };
 
-  const getMonthOfTheYear = (num: number) => {
+  const getMonthOfTheYear = (num: number): string => {
     const monthOfTheYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return monthOfTheYear[num];
   };
 
-  const formatDate = (num: number) => {
-    return num > 9 ? num : '0' + num;
+  const formatDate = (num: number): string => {
+    return num > 9 ? `${num}` : `0${num}`;
   };
 
   const getTime = () => {

@@ -1,0 +1,58 @@
+.mainWrapper {
+  z-index: 10;
+  position: absolute;
+  background-color: #ececec;
+
+  width: 80vw;
+  height: 80vh;
+  max-width: 600px;
+  max-height: 450px;
+
+  animation: fadeIn 5s ease-in-out 0 1;
+
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    padding: 30px;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  right: 0;
+  margin: 5px;
+  padding: 5px;
+  width: 40px;
+  transform: rotate(45deg);
+  fill: inherit;
+  transition-property: fill;
+  transition-duration: 0.5s;
+
+  &:hover {
+    cursor: pointer;
+    fill: rgb(73, 165, 240);
+  }
+}
+
+.hide {
+  display: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  90% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
