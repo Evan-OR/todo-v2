@@ -3,8 +3,8 @@
   align-items: center;
 
   border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+  background: #ececec;
+  box-shadow: 4px 4px 4px #bebebe, -4px -4px 4px #ffffff;
 
   border: solid 1px rgb(73, 165, 240, 0);
 
@@ -17,16 +17,19 @@
   .icon {
     margin-left: 5px;
     width: 18px;
+    transition-property: transform;
+    transition-duration: 0.5s;
   }
 
   &:hover {
     border-radius: 10px;
-    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    // background: linear-gradient(145deg, #f0f0f0, #cacaca);
     box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
     color: rgb(73, 165, 240);
 
     .icon {
       fill: rgb(73, 165, 240);
+      transform: rotate(90deg);
     }
   }
 

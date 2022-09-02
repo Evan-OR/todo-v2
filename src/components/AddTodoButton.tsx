@@ -1,5 +1,4 @@
 import style from '../styles/buttons.module.scss';
-import plusIcon from '../img/plus-solid.svg';
 
 function AddTodoButton() {
   return (

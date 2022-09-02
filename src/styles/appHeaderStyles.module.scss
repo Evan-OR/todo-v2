@@ -6,6 +6,7 @@
 }
 
 .background {
+  overflow: hidden;
   z-index: -1;
   position: absolute;
   background-image: linear-gradient(to right top, #c777b9, #ba83ca, #aa8fd8, #79b3f4, #69bff8, #52cffe, #41dfff);
