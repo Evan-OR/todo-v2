@@ -21,6 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 
   .dayNum {
     font-size: 4rem;
@@ -45,4 +46,5 @@
 }
 .time {
   opacity: 0.8;
+  user-select: none;
 }

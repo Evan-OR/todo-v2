@@ -6,6 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   color: #353535;
+  background-color: #ececec;
 }
 * {
   box-sizing: border-box;
