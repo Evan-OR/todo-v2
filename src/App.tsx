@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import AddTodoButton from './components/AddTodoButton';
 import DateAndTimeDisplay from './components/DateAndTimeDisplay';
-import TodoCreator from './components/TodoCreator';
+import TodoCreator from './components/TodoCreator/TodoCreator';
 import TodoDisplayWrapper from './components/TodoDisplayWrapper';
 import './styles/App.css';
 
@@ -10,7 +10,6 @@ function App() {
 
   const toggleToDoCreator = () => {
     setShowToDoCreator(!showToDoCreator);
-    console.log(showToDoCreator);
   };
 
   return (
