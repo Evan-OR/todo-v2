@@ -1,5 +1,6 @@
 import stlyes from '../../styles/todoCreatorStyles.module.scss';
 import ColourChooser from './ColourChooser';
+import IconChooser from './IconChooser';
 
 type TodoCreatorProps = {
   show: boolean;
@@ -26,7 +27,7 @@ function TodoCreator(props: TodoCreatorProps) {
           <div>Desc</div>
           <input type="text"></input>
           <div>Icon</div>
-          <input type="text"></input>
+          <IconChooser />
           <div>Colour</div>
           <ColourChooser />
         </form>
