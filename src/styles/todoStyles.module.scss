@@ -1,6 +1,9 @@
 $mainColour: #292929;
 
 .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 1000px;
   width: 100%;
 }

@@ -6,7 +6,7 @@ function ColourChooser() {
   return (
     <div className={styles.colourSquareWrapper}>
       {Colours.map((el) => (
-        <ColourSquare colour={el} />
+        <ColourSquare key={el} colour={el} />
       ))}
     </div>
   );

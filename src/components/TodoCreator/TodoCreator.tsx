@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import stlyes from '../../styles/todoCreatorStyles.module.scss';
 import ColourChooser from './ColourChooser';
 import IconChooser from './IconChooser';
@@ -9,13 +10,21 @@ type TodoCreatorProps = {
 
 function TodoCreator(props: TodoCreatorProps) {
   const { show, toggleToDoCreator } = props;
+  const form = useRef<HTMLFormElement>(null);
+
+  const cancelFormInputs = () => {
+    form.current?.reset();
+  };
 
   return (
     <div className={`${stlyes.mainWrapper} ${show ? '' : stlyes.hide}`}>
       <div className={stlyes.modalWrapper}>
-        <form className={stlyes.form}>
+        <form ref={form} className={stlyes.form}>
           <svg
-            onClick={toggleToDoCreator}
+            onClick={() => {
+              toggleToDoCreator();
+              cancelFormInputs();
+            }}
             className={stlyes.closeButton}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
@@ -30,6 +39,8 @@ function TodoCreator(props: TodoCreatorProps) {
           <IconChooser />
           <div>Colour</div>
           <ColourChooser />
+          <div>Due Date {'&'} Time</div>
+          <input type="datetime-local"></input>
         </form>
       </div>
     </div>
