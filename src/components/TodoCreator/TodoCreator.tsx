@@ -10,11 +10,13 @@ type TodoCreatorProps = {
 
 function TodoCreator(props: TodoCreatorProps) {
   const { show, toggleToDoCreator } = props;
-  const form = useRef<HTMLFormElement>(null);
 
-  const cancelFormInputs = () => {
-    form.current?.reset();
-  };
+  const form = useRef<HTMLFormElement>(null);
+  const title = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    title.current?.focus();
+  }, []);
 
   return (
     <div className={`${stlyes.mainWrapper} ${show ? '' : stlyes.hide}`}>
@@ -23,7 +25,6 @@ function TodoCreator(props: TodoCreatorProps) {
           <svg
             onClick={() => {
               toggleToDoCreator();
-              cancelFormInputs();
             }}
             className={stlyes.closeButton}
             xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +33,7 @@ function TodoCreator(props: TodoCreatorProps) {
             <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
           </svg>
           <div>Title</div>
-          <input type="text"></input>
+          <input ref={title} type="text"></input>
           <div>Desc</div>
           <input type="text"></input>
           <div>Icon</div>
