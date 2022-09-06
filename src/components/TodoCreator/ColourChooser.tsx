@@ -1,4 +1,4 @@
-import { Colours } from '../../types';
+import { Colours } from '../../utils';
 import ColourSquare from './ColourSquare';
 import styles from '../../styles/todoCreatorStyles.module.scss';
 
