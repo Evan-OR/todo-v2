@@ -14,9 +14,9 @@
     background-color: #ececec;
 
     width: 80vw;
-    height: 80vh;
+    height: fit-content;
     max-width: 600px;
-    max-height: 450px;
+    max-height: 850px;
 
     margin-top: 120px;
     border-radius: 20px;
@@ -29,6 +29,13 @@
       width: 100%;
 
       padding: 30px;
+
+      .title {
+        font-weight: bold;
+        font-size: 1.4rem;
+        margin-top: 12px;
+        margin-bottom: 4px;
+      }
     }
   }
 }
@@ -80,6 +87,8 @@
 
 .iconSquareWrapper {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 .iconSquare {
   display: flex;

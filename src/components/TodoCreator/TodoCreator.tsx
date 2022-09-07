@@ -21,9 +21,9 @@ function TodoCreator(props: TodoCreatorProps) {
   useEffect(() => {
     title.current?.focus();
   }, []);
-  useEffect(() => {
-    console.log(iconId);
-  }, [iconId]);
+  // useEffect(() => {
+  //   console.log(iconId);
+  // }, [iconId]);
 
   const handleTitleInput = (e: any) => {
     setTitleValue(e.target.value);
@@ -50,15 +50,15 @@ function TodoCreator(props: TodoCreatorProps) {
           >
             <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
           </svg>
-          <div>Title</div>
+          <div className={stlyes.title}>Title</div>
           <input ref={title} value={titleValue} onChange={handleTitleInput} type="text"></input>
-          <div>Desc</div>
+          <div className={stlyes.title}>Desc</div>
           <input type="text" value={descriptionValue} onChange={handleDescriptionInput}></input>
-          <div>Icon</div>
+          <div className={stlyes.title}>Icon</div>
           <IconChooser selectedId={iconId} handleIconId={handleIconId} />
-          <div>Colour</div>
+          <div className={stlyes.title}>Colour</div>
           <ColourChooser />
-          <div>Due Date {'&'} Time</div>
+          <div className={stlyes.title}>Due Date {'&'} Time</div>
           <input type="datetime-local"></input>
         </form>
       </div>
