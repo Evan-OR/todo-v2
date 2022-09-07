@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import stlyes from '../../styles/todoCreatorStyles.module.scss';
+import ButtonStlyes from '../../styles/buttons.module.scss';
 import ColourChooser from './ColourChooser';
 import IconChooser from './IconChooser';
 
@@ -51,15 +52,37 @@ function TodoCreator(props: TodoCreatorProps) {
             <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
           </svg>
           <div className={stlyes.title}>Title</div>
-          <input ref={title} value={titleValue} onChange={handleTitleInput} type="text"></input>
+          <input
+            ref={title}
+            value={titleValue}
+            onChange={handleTitleInput}
+            type="text"
+            placeholder="Interview Prep"
+          ></input>
+
           <div className={stlyes.title}>Desc</div>
-          <input type="text" value={descriptionValue} onChange={handleDescriptionInput}></input>
+          <input
+            type="text"
+            value={descriptionValue}
+            onChange={handleDescriptionInput}
+            placeholder="Grind LeetCode"
+          ></input>
+
           <div className={stlyes.title}>Icon</div>
           <IconChooser selectedId={iconId} handleIconId={handleIconId} />
+
           <div className={stlyes.title}>Colour</div>
           <ColourChooser />
+
           <div className={stlyes.title}>Due Date {'&'} Time</div>
           <input type="datetime-local"></input>
+
+          <div className={`${ButtonStlyes.addBtn} ${stlyes.submitButton}`}>
+            <div>Submit</div>{' '}
+            <svg className={ButtonStlyes.icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+            </svg>
+          </div>
         </form>
       </div>
     </div>

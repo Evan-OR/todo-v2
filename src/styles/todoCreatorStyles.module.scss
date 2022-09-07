@@ -16,7 +16,6 @@
     width: 80vw;
     height: fit-content;
     max-width: 600px;
-    max-height: 850px;
 
     margin-top: 120px;
     border-radius: 20px;
@@ -58,20 +57,16 @@
   }
 }
 
-.hide {
-  display: none;
-}
-
 .colourSquareWrapper {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 .colourSquare {
   margin: 4px;
   width: 50px;
   height: 50px;
   border-radius: 10px;
-
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
 
   transition-property: transform;
   transition-duration: 0.3s;
@@ -83,6 +78,7 @@
 }
 .selected {
   border: solid 2px #353535;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 .iconSquareWrapper {
@@ -98,6 +94,8 @@
   height: 35px;
   margin: 4px;
 
+  opacity: 0.8;
+
   transition-property: transform;
   transition-duration: 0.3s;
   svg {
@@ -105,26 +103,18 @@
   }
 
   &:hover {
-    transform: scale(1.15);
+    transform: scale(1.2);
     cursor: pointer;
   }
 }
 .selectedIcon {
-  transform: scale(1.15);
+  transform: scale(1.2);
   fill: rgb(73, 165, 240);
-  // filter: drop-shadow(0 0 2px #0000006c);
+  opacity: 1;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  90% {
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+.submitButton {
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-top: 20px;
 }
