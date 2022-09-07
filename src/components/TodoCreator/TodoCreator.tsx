@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import stlyes from '../../styles/todoCreatorStyles.module.scss';
 import ColourChooser from './ColourChooser';
 import IconChooser from './IconChooser';
@@ -11,12 +11,30 @@ type TodoCreatorProps = {
 function TodoCreator(props: TodoCreatorProps) {
   const { show, toggleToDoCreator } = props;
 
+  let [titleValue, setTitleValue] = useState<string>('');
+  let [descriptionValue, setDescriptionValue] = useState<string>('');
+  let [iconId, setIconId] = useState<number>(0);
+
   const form = useRef<HTMLFormElement>(null);
   const title = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     title.current?.focus();
   }, []);
+  useEffect(() => {
+    console.log(iconId);
+  }, [iconId]);
+
+  const handleTitleInput = (e: any) => {
+    setTitleValue(e.target.value);
+  };
+  const handleDescriptionInput = (e: any) => {
+    setDescriptionValue(e.target.value);
+  };
+
+  const handleIconId = (id: number) => {
+    setIconId(id);
+  };
 
   return (
     <div className={`${stlyes.mainWrapper} ${show ? '' : stlyes.hide}`}>
@@ -33,11 +51,11 @@ function TodoCreator(props: TodoCreatorProps) {
             <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
           </svg>
           <div>Title</div>
-          <input ref={title} type="text"></input>
+          <input ref={title} value={titleValue} onChange={handleTitleInput} type="text"></input>
           <div>Desc</div>
-          <input type="text"></input>
+          <input type="text" value={descriptionValue} onChange={handleDescriptionInput}></input>
           <div>Icon</div>
-          <IconChooser />
+          <IconChooser selectedId={iconId} handleIconId={handleIconId} />
           <div>Colour</div>
           <ColourChooser />
           <div>Due Date {'&'} Time</div>
