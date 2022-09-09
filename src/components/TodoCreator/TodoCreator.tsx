@@ -15,6 +15,7 @@ function TodoCreator(props: TodoCreatorProps) {
   let [titleValue, setTitleValue] = useState<string>('');
   let [descriptionValue, setDescriptionValue] = useState<string>('');
   let [iconId, setIconId] = useState<number>(0);
+  let [colour, setColour] = useState<string>('#ececec');
 
   const form = useRef<HTMLFormElement>(null);
   const title = useRef<HTMLInputElement>(null);
@@ -23,8 +24,8 @@ function TodoCreator(props: TodoCreatorProps) {
     title.current?.focus();
   }, []);
   // useEffect(() => {
-  //   console.log(iconId);
-  // }, [iconId]);
+  //   console.log(`%c ${colour} `, `background: #222; color: ${colour}`);
+  // }, [colour]);
 
   const handleTitleInput = (e: any) => {
     setTitleValue(e.target.value);
@@ -35,6 +36,10 @@ function TodoCreator(props: TodoCreatorProps) {
 
   const handleIconId = (id: number) => {
     setIconId(id);
+  };
+
+  const handleColour = (c: string) => {
+    setColour(c);
   };
 
   return (
@@ -72,7 +77,7 @@ function TodoCreator(props: TodoCreatorProps) {
           <IconChooser selectedId={iconId} handleIconId={handleIconId} />
 
           <div className={stlyes.title}>Colour</div>
-          <ColourChooser />
+          <ColourChooser handleColour={handleColour} selectedColour={colour} />
 
           <div className={stlyes.title}>Due Date {'&'} Time</div>
           <input type="datetime-local"></input>

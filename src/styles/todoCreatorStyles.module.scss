@@ -35,6 +35,35 @@
         margin-top: 12px;
         margin-bottom: 4px;
       }
+
+      input[type='text'],
+      select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      input[type='datetime-local'],
+      select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      ::-webkit-calendar-picker-indicator {
+        transform: scale(1.5);
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }
@@ -49,7 +78,7 @@
   transform: rotate(45deg);
   fill: inherit;
   transition-property: fill;
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
 
   &:hover {
     cursor: pointer;
@@ -63,10 +92,15 @@
   width: 100%;
 }
 .colourSquare {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   margin: 4px;
   width: 50px;
   height: 50px;
   border-radius: 10px;
+  border: solid 1px #353535;
 
   transition-property: transform;
   transition-duration: 0.3s;
@@ -79,6 +113,8 @@
 .selected {
   border: solid 2px #353535;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .iconSquareWrapper {

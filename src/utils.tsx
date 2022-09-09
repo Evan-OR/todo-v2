@@ -6,7 +6,7 @@ export type ToDo = {
 
 export type IconType = 'House Work' | 'School Work' | 'Work Out' | 'Tech';
 
-export const Colours = ['#ececec', '#eb4034', '#34eb37', '#5f34eb', '#eb34cc', '#ebc034'];
+export const Colours = ['#ececec', '#FB6969', '#76EC59', '#916EF7', '#FB97FC', '#FFEB6D', '#FFC36D'];
 
 export const Icons = [
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
