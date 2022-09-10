@@ -4,6 +4,8 @@ export type ToDo = {
   iconId: number;
 };
 
+export type Priority = 'None' | 'Low' | 'Medium' | 'High';
+
 export type IconType = 'House Work' | 'School Work' | 'Work Out' | 'Tech';
 
 export const Colours = ['#ececec', '#FB6969', '#76EC59', '#49a5f0', '#916EF7', '#FB97FC', '#FFEB6D', '#FFC36D'];

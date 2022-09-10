@@ -3,6 +3,8 @@ import stlyes from '../../styles/todoCreatorStyles.module.scss';
 import ButtonStlyes from '../../styles/buttons.module.scss';
 import ColourChooser from './ColourChooser';
 import IconChooser from './IconChooser';
+import PrioritySelector from './PrioritySelector';
+import { Priority } from '../../utils';
 
 type TodoCreatorProps = {
   show: boolean;
@@ -17,6 +19,7 @@ function TodoCreator(props: TodoCreatorProps) {
   let [iconId, setIconId] = useState<number>(0);
   let [colour, setColour] = useState<string>('#ececec');
   let [dueDate, setDueDate] = useState();
+  let [priority, setPriority] = useState<Priority>('Low');
 
   const form = useRef<HTMLFormElement>(null);
   const title = useRef<HTMLInputElement>(null);
@@ -25,8 +28,8 @@ function TodoCreator(props: TodoCreatorProps) {
     title.current?.focus();
   }, []);
   useEffect(() => {
-    console.log(dueDate);
-  }, [dueDate]);
+    console.log(priority);
+  }, [priority]);
 
   const handleTitleInput = (e: any) => {
     setTitleValue(e.target.value);
@@ -34,7 +37,7 @@ function TodoCreator(props: TodoCreatorProps) {
   const handleDescriptionInput = (e: any) => {
     setDescriptionValue(e.target.value);
   };
-  //
+
   const handleIconId = (id: number) => {
     setIconId(id);
   };
@@ -45,6 +48,10 @@ function TodoCreator(props: TodoCreatorProps) {
 
   const handleDueDate = (c: any) => {
     setDueDate(c);
+  };
+
+  const handlePrioritySelector = (e: any) => {
+    setPriority(e.target.value);
   };
 
   return (
@@ -83,6 +90,9 @@ function TodoCreator(props: TodoCreatorProps) {
 
           <div className={stlyes.title}>Colour</div>
           <ColourChooser handleColour={handleColour} selectedColour={colour} />
+
+          <div className={stlyes.title}>Priority</div>
+          <PrioritySelector handlePrioritySelector={handlePrioritySelector} priority={priority} />
 
           <div className={stlyes.title}>Due Date {'&'} Time</div>
           <input onChange={handleDueDate} type="datetime-local"></input>
