@@ -1,7 +1,9 @@
 export type ToDo = {
   title: string;
-  desc: string;
+  desc?: string;
   iconId: number;
+  colour: string;
+  priority: Priority;
 };
 
 export type Priority = 'None' | 'Low' | 'Medium' | 'High';

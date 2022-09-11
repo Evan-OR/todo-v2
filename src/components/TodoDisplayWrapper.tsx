@@ -1,13 +1,18 @@
 import styles from '../styles/todoStyles.module.scss';
-import ToDo from './ToDo';
+import ToDoDisplay from './ToDoDisplay';
+import { ToDo } from '../utils';
 
-type TodoDisplayProps = {};
+type TodoDisplayProps = {
+  toDosArray: ToDo[];
+};
 function TodoDisplayWrapper(props: TodoDisplayProps) {
+  const { toDosArray } = props;
+
   return (
     <div className={styles.main}>
-      <ToDo />
-      <ToDo />
-      <ToDo />
+      {toDosArray.map((toDo) => (
+        <ToDoDisplay todo={toDo} />
+      ))}
     </div>
   );
 }

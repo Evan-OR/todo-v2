@@ -1,4 +1,4 @@
-$mainColour: #292929;
+$mainColour: #353535;
 
 .main {
   display: flex;
@@ -29,11 +29,15 @@ $mainColour: #292929;
   transition-duration: 0.2s;
 
   .icon {
-    flex: 0.5;
+    width: 24px;
+    height: 24px;
+
     display: flex;
     justify-content: center;
     align-items: center;
     user-select: none;
+
+    margin: 0 12px;
   }
 
   .title {
@@ -44,9 +48,21 @@ $mainColour: #292929;
     user-select: none;
   }
 
-  .due {
-    flex: 1;
+  .priority {
     user-select: none;
+    width: 26px;
+    height: 26px;
+    margin: 0 12px;
+    color: inherit;
+    border: solid 1px $mainColour;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 14px;
+    background-color: rgb(255, 223, 118);
+    border-radius: 50%;
   }
 
   .editIcon {

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ToDo } from './utils';
 import AddTodoButton from './components/AddTodoButton';
 import DateAndTimeDisplay from './components/DateAndTimeDisplay';
 import TodoCreator from './components/TodoCreator/TodoCreator';
@@ -7,6 +8,10 @@ import './styles/App.css';
 
 function App() {
   const [showToDoCreator, setShowToDoCreator] = useState<boolean>(false);
+  const [todos, setTodos] = useState<ToDo[]>([
+    { title: 'Thing', desc: '', iconId: 1, colour: '', priority: 'Medium' },
+    { title: 'Other Thing', desc: '', iconId: 6, colour: '', priority: 'Low' },
+  ]);
 
   const toggleToDoCreator = () => {
     setShowToDoCreator(!showToDoCreator);
@@ -17,7 +22,7 @@ function App() {
       {showToDoCreator ? <TodoCreator toggleToDoCreator={toggleToDoCreator} /> : <></>}
       <DateAndTimeDisplay />
       <AddTodoButton toggleToDoCreator={toggleToDoCreator} />
-      <TodoDisplayWrapper />
+      <TodoDisplayWrapper toDosArray={todos} />
     </div>
   );
 }
