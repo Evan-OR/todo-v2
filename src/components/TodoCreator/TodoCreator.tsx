@@ -5,6 +5,7 @@ import ColourChooser from './ColourChooser';
 import IconChooser from './IconChooser';
 import PrioritySelector from './PrioritySelector';
 import { Priority } from '../../utils';
+import BottomFade from './BottomFade';
 
 type TodoCreatorProps = {
   show: boolean;
@@ -97,6 +98,7 @@ function TodoCreator(props: TodoCreatorProps) {
             </svg>
           </div>
         </form>
+        <BottomFade />
       </div>
     </div>
   );
