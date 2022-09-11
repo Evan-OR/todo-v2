@@ -93,17 +93,24 @@
   }
 }
 
-.closeButton {
+.closeButtonWrapper {
   position: absolute;
-  right: 0;
   top: 0;
+  right: 0;
+
   margin: 5px;
   padding: 5px;
   width: 40px;
+  height: 40px;
   transform: rotate(45deg);
   fill: inherit;
   transition-property: fill;
   transition-duration: 0.3s;
+
+  .closeIcon {
+    position: sticky;
+    top: 0;
+  }
 
   &:hover {
     cursor: pointer;
