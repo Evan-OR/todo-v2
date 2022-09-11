@@ -9,6 +9,26 @@
   width: 100vw;
   height: 100vh;
 
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
   .modalWrapper {
     z-index: 10;
     background-color: #ececec;
@@ -21,28 +41,8 @@
     margin-top: 120px;
     border-radius: 20px;
 
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
-
-    // /* width */
-    // ::-webkit-scrollbar {
-    //   width: 10px;
-    // }
-
-    // /* Track */
-    // ::-webkit-scrollbar-track {
-    //   background: #f1f1f1;
-    // }
-
-    // /* Handle */
-    // ::-webkit-scrollbar-thumb {
-    //   background: #888;
-    // }
-
-    // /* Handle on hover */
-    // ::-webkit-scrollbar-thumb:hover {
-    //   background: #555;
-    // }
 
     .form {
       position: relative;
@@ -81,13 +81,6 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
-      }
-
-      ::-webkit-calendar-picker-indicator {
-        transform: scale(1.5);
-        &:hover {
-          cursor: pointer;
-        }
       }
     }
   }

@@ -16,6 +16,7 @@ function PrioritySelector(props: PrioritySelectorProps) {
       onChange={handlePrioritySelector}
       className={`${stlyes.prioritySelectWrapper} ${stlyes[priority]}`}
       name="Priority"
+      value={priority}
     >
       {pArray.map((el) => (
         <option style={{ background: '#ececec' }} key={el} value={el}>

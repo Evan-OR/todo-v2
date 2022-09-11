@@ -18,7 +18,7 @@ function TodoCreator(props: TodoCreatorProps) {
   let [descriptionValue, setDescriptionValue] = useState<string>('');
   let [iconId, setIconId] = useState<number>(0);
   let [colour, setColour] = useState<string>('#ececec');
-  let [priority, setPriority] = useState<Priority>('Low');
+  let [priority, setPriority] = useState<Priority>('None');
 
   const form = useRef<HTMLFormElement>(null);
   const title = useRef<HTMLInputElement>(null);
@@ -26,9 +26,9 @@ function TodoCreator(props: TodoCreatorProps) {
   useEffect(() => {
     title.current?.focus();
   }, []);
-  useEffect(() => {
-    console.log(priority);
-  }, [priority]);
+  // useEffect(() => {
+  //   console.log(priority);
+  // }, [priority]);
 
   const handleTitleInput = (e: any) => {
     setTitleValue(e.target.value);
