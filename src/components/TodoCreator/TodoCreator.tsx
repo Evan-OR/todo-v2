@@ -4,17 +4,16 @@ import ButtonStlyes from '../../styles/buttons.module.scss';
 import ColourChooser from './ColourChooser';
 import IconChooser from './IconChooser';
 import PrioritySelector from './PrioritySelector';
-import { Priority } from '../../utils';
+import { Priority, assertIsNode } from '../../utils';
 import BottomFade from './BottomFade';
 import CloseFormButton from './CloseFormButton';
 
 type TodoCreatorProps = {
-  show: boolean;
   toggleToDoCreator: () => void;
 };
 
 function TodoCreator(props: TodoCreatorProps) {
-  const { show, toggleToDoCreator } = props;
+  const { toggleToDoCreator } = props;
 
   let [titleValue, setTitleValue] = useState<string>('');
   let [descriptionValue, setDescriptionValue] = useState<string>('');
@@ -22,11 +21,22 @@ function TodoCreator(props: TodoCreatorProps) {
   let [colour, setColour] = useState<string>('#ececec');
   let [priority, setPriority] = useState<Priority>('None');
 
-  const form = useRef<HTMLFormElement>(null);
+  const modal = useRef<HTMLDivElement>(null);
   const title = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     title.current?.focus();
+
+    let handler = (event: MouseEvent) => {
+      console.log('called');
+      assertIsNode(event.target);
+      if (!modal.current?.contains(event.target)) {
+        toggleToDoCreator();
+      }
+    };
+    document.addEventListener('mousedown', handler);
+
+    return () => document.removeEventListener('mousedown', handler);
   }, []);
   // useEffect(() => {
   //   console.log(priority);
@@ -52,9 +62,9 @@ function TodoCreator(props: TodoCreatorProps) {
   };
 
   return (
-    <div className={`${stlyes.mainWrapper} ${show ? '' : stlyes.hide}`}>
-      <div className={stlyes.modalWrapper}>
-        <form ref={form} className={stlyes.form}>
+    <div className={stlyes.mainWrapper}>
+      <div ref={modal} className={stlyes.modalWrapper}>
+        <form className={stlyes.form}>
           <div className={stlyes.title}>Title</div>
           <input
             ref={title}

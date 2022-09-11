@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className="appWrapper">
-      {showToDoCreator ? <TodoCreator show={showToDoCreator} toggleToDoCreator={toggleToDoCreator} /> : <></>}
+      {showToDoCreator ? <TodoCreator toggleToDoCreator={toggleToDoCreator} /> : <></>}
       <DateAndTimeDisplay />
       <AddTodoButton toggleToDoCreator={toggleToDoCreator} />
       <TodoDisplayWrapper />
