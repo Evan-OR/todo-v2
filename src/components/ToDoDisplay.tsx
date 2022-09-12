@@ -1,6 +1,5 @@
 import styles from '../styles/todoStyles.module.scss';
-import { Icons } from '../utils';
-import { ToDo } from '../utils';
+import { Icons, ToDo, Priority, PriorityColours } from '../utils';
 
 type ToDoDisplayProps = {
   todo: ToDo;
@@ -9,11 +8,26 @@ type ToDoDisplayProps = {
 function ToDoDisplay(props: ToDoDisplayProps) {
   const { todo } = props;
 
+  const getPriorityColour = (p: Priority): number => {
+    switch (p) {
+      case 'None':
+        return 0;
+      case 'Low':
+        return 1;
+      case 'Medium':
+        return 2;
+      case 'High':
+        return 3;
+    }
+  };
+
+  getPriorityColour(todo.priority);
+
   return (
     <div className={styles.todoWrapper}>
       <div className={styles.icon}>{Icons[todo.iconId]}</div>
       <div className={styles.title}>{todo.title}</div>
-      <div className={styles.priority}>
+      <div className={styles.priority} style={{ background: PriorityColours[getPriorityColour(todo.priority)] }}>
         <div>{todo.priority.substring(0, 1)}</div>
       </div>
       <svg className={styles.editIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

@@ -9,8 +9,9 @@ import './styles/App.css';
 function App() {
   const [showToDoCreator, setShowToDoCreator] = useState<boolean>(false);
   const [todos, setTodos] = useState<ToDo[]>([
-    { title: 'Thing', desc: '', iconId: 1, colour: '', priority: 'Medium' },
-    { title: 'Other Thing', desc: '', iconId: 6, colour: '', priority: 'Low' },
+    { title: 'Feed the cat', desc: '', iconId: 8, colour: '', priority: 'High' },
+    { title: 'Clean house', desc: '', iconId: 1, colour: '', priority: 'Medium' },
+    { title: 'Do the shopping', desc: '', iconId: 6, colour: '', priority: 'Low' },
   ]);
 
   const toggleToDoCreator = () => {

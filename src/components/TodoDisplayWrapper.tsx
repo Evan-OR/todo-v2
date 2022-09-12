@@ -10,8 +10,8 @@ function TodoDisplayWrapper(props: TodoDisplayProps) {
 
   return (
     <div className={styles.main}>
-      {toDosArray.map((toDo) => (
-        <ToDoDisplay todo={toDo} />
+      {toDosArray.map((toDo, idx) => (
+        <ToDoDisplay key={`${idx}${toDo.priority}`} todo={toDo} />
       ))}
     </div>
   );

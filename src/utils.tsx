@@ -7,6 +7,7 @@ export type ToDo = {
 };
 
 export type Priority = 'None' | 'Low' | 'Medium' | 'High';
+export const PriorityColours = ['', '#74cc69', '#ffd86e', '#f37272'];
 
 export type IconType = 'House Work' | 'School Work' | 'Work Out' | 'Tech';
 
