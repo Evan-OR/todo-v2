@@ -1,3 +1,5 @@
+import { TodoComment } from 'typescript';
+
 export type ToDo = {
   id: number;
   title: string;
@@ -68,3 +70,11 @@ export function assertIsNode(e: EventTarget | null): asserts e is Node {
     throw new Error(`Node expected`);
   }
 }
+
+export const checkIfTodoExists = (todo: ToDo, todoArray: ToDo[]) => {
+  todoArray.forEach((el) => {
+    if (el.id === todo.id) return true;
+  });
+
+  return false;
+};
