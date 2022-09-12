@@ -4,16 +4,17 @@ import ButtonStlyes from '../../styles/buttons.module.scss';
 import ColourChooser from './ColourChooser';
 import IconChooser from './IconChooser';
 import PrioritySelector from './PrioritySelector';
-import { Priority, assertIsNode } from '../../utils';
+import { Priority, assertIsNode, ToDo } from '../../utils';
 import BottomFade from './BottomFade';
 import CloseFormButton from './CloseFormButton';
 
 type TodoCreatorProps = {
   toggleToDoCreator: () => void;
+  todo?: ToDo;
 };
 
 function TodoCreator(props: TodoCreatorProps) {
-  const { toggleToDoCreator } = props;
+  const { toggleToDoCreator, todo } = props;
 
   let [titleValue, setTitleValue] = useState<string>('');
   let [descriptionValue, setDescriptionValue] = useState<string>('');
@@ -24,11 +25,23 @@ function TodoCreator(props: TodoCreatorProps) {
   const modal = useRef<HTMLDivElement>(null);
   const title = useRef<HTMLInputElement>(null);
 
+  const checkIfTodoWasPassed = () => {
+    if (!todo) return;
+
+    setTitleValue(todo.title);
+    setIconId(todo.iconId);
+    setColour(todo.colour);
+    setPriority(todo.priority);
+    if (todo.desc) {
+      setDescriptionValue(todo.desc);
+    }
+  };
+
   useEffect(() => {
+    checkIfTodoWasPassed();
     title.current?.focus();
 
     let handler = (event: MouseEvent) => {
-      console.log('called');
       assertIsNode(event.target);
       if (!modal.current?.contains(event.target)) {
         toggleToDoCreator();
