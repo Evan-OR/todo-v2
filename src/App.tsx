@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ToDo } from './utils';
+import { ToDo, checkIfTodoExists } from './utils';
 import AddTodoButton from './components/AddTodoButton';
 import DateAndTimeDisplay from './components/DateAndTimeDisplay';
 import TodoCreator from './components/TodoCreator/TodoCreator';
@@ -25,7 +25,18 @@ function App() {
     setShowToDoCreator(!showToDoCreator);
   };
 
-  const addTodo = () => {};
+  const addTodo = (todo: ToDo) => {
+    if (!checkIfTodoExists(todo, todos)) {
+      let newArray = [...todos, todo];
+      setTodos(newArray);
+    } else {
+      let index: number = 0;
+      for (let i = 0; i < todos.length; i++) {
+        if (todos[i].id === todo.id) index = i;
+      }
+      todos.splice(index, 1, todo);
+    }
+  };
 
   return (
     <div className="appWrapper">
