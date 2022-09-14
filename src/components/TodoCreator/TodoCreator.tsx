@@ -9,8 +9,8 @@ import BottomFade from './BottomFade';
 import CloseFormButton from './CloseFormButton';
 
 type TodoCreatorProps = {
-  toggleToDoCreator: () => void;
-  todo?: ToDo;
+  toggleToDoCreator: (todo: ToDo | null) => void;
+  todo: ToDo | null;
 };
 
 function TodoCreator(props: TodoCreatorProps) {
@@ -44,7 +44,7 @@ function TodoCreator(props: TodoCreatorProps) {
     let handler = (event: MouseEvent) => {
       assertIsNode(event.target);
       if (!modal.current?.contains(event.target)) {
-        toggleToDoCreator();
+        toggleToDoCreator(null);
       }
     };
     document.addEventListener('mousedown', handler);

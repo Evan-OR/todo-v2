@@ -20,12 +20,14 @@ function App() {
     { id: 2, title: 'Clean house', desc: '', iconId: 1, colour: '#ececec', priority: 'Medium' },
     { id: 3, title: 'Do the shopping', desc: '', iconId: 6, colour: '#ececec', priority: 'Low' },
   ]);
+  const [editTodo, setEditTodo] = useState<ToDo | null>(null);
 
-  const toggleToDoCreator = () => {
+  const toggleToDoCreator = (todo: ToDo | null): void => {
+    setEditTodo(todo);
     setShowToDoCreator(!showToDoCreator);
   };
 
-  const addTodo = (todo: ToDo) => {
+  const addTodo = (todo: ToDo): void => {
     if (!checkIfTodoExists(todo, todos)) {
       let newArray = [...todos, todo];
       setTodos(newArray);
@@ -40,10 +42,10 @@ function App() {
 
   return (
     <div className="appWrapper">
-      {showToDoCreator ? <TodoCreator todo={todos[0]} toggleToDoCreator={toggleToDoCreator} /> : <></>}
+      {showToDoCreator ? <TodoCreator todo={editTodo} toggleToDoCreator={toggleToDoCreator} /> : <></>}
       <DateAndTimeDisplay />
       <AddTodoButton toggleToDoCreator={toggleToDoCreator} />
-      <TodoDisplayWrapper toDosArray={todos} />
+      <TodoDisplayWrapper toDosArray={todos} toggleToDoCreator={toggleToDoCreator} />
     </div>
   );
 }
