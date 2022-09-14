@@ -36,13 +36,17 @@ function App() {
       for (let i = 0; i < todos.length; i++) {
         if (todos[i].id === todo.id) index = i;
       }
-      todos.splice(index, 1, todo);
+      setTodos(todos.splice(index, 1, todo));
     }
   };
 
   return (
     <div className="appWrapper">
-      {showToDoCreator ? <TodoCreator todo={editTodo} toggleToDoCreator={toggleToDoCreator} /> : <></>}
+      {showToDoCreator ? (
+        <TodoCreator todo={editTodo} toggleToDoCreator={toggleToDoCreator} addTodo={addTodo} />
+      ) : (
+        <></>
+      )}
       <DateAndTimeDisplay />
       <AddTodoButton toggleToDoCreator={toggleToDoCreator} />
       <TodoDisplayWrapper toDosArray={todos} toggleToDoCreator={toggleToDoCreator} />

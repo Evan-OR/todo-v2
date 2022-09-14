@@ -10,11 +10,12 @@ import CloseFormButton from './CloseFormButton';
 
 type TodoCreatorProps = {
   toggleToDoCreator: (todo: ToDo | null) => void;
+  addTodo: (todo: ToDo) => void;
   todo: ToDo | null;
 };
 
 function TodoCreator(props: TodoCreatorProps) {
-  const { toggleToDoCreator, todo } = props;
+  const { toggleToDoCreator, addTodo, todo } = props;
 
   let [titleValue, setTitleValue] = useState<string>('');
   let [descriptionValue, setDescriptionValue] = useState<string>('');
@@ -55,6 +56,7 @@ function TodoCreator(props: TodoCreatorProps) {
   //   console.log(priority);
   // }, [priority]);
 
+  //#region Form Handlers
   const handleTitleInput = (e: any) => {
     setTitleValue(e.target.value);
   };
@@ -73,6 +75,23 @@ function TodoCreator(props: TodoCreatorProps) {
   const handlePrioritySelector = (e: any) => {
     setPriority(e.target.value);
   };
+
+  const submitHandler = () => {
+    const d = new Date();
+    let finalTodoInformation: ToDo = {} as ToDo;
+
+    finalTodoInformation.title = titleValue;
+    finalTodoInformation.desc = descriptionValue;
+    finalTodoInformation.iconId = iconId;
+    finalTodoInformation.colour = colour;
+    finalTodoInformation.priority = priority;
+
+    todo ? (finalTodoInformation.id = todo.id) : (finalTodoInformation.id = d.getTime());
+
+    addTodo(finalTodoInformation);
+    toggleToDoCreator(null);
+  };
+  //#endregion
 
   return (
     <div className={stlyes.mainWrapper}>
@@ -104,7 +123,7 @@ function TodoCreator(props: TodoCreatorProps) {
           <div className={stlyes.title}>Priority</div>
           <PrioritySelector handlePrioritySelector={handlePrioritySelector} priority={priority} />
 
-          <div className={`${ButtonStlyes.addBtn} ${stlyes.submitButton}`}>
+          <div onClick={submitHandler} className={`${ButtonStlyes.addBtn} ${stlyes.submitButton}`}>
             <div>Submit</div>{' '}
             <svg className={ButtonStlyes.icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
