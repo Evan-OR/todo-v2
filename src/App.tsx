@@ -36,7 +36,9 @@ function App() {
       for (let i = 0; i < todos.length; i++) {
         if (todos[i].id === todo.id) index = i;
       }
-      setTodos(todos.splice(index, 1, todo));
+      let newArray = [...todos];
+      newArray[index] = todo;
+      setTodos(newArray);
     }
   };
 

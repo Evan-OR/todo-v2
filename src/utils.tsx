@@ -68,9 +68,11 @@ export function assertIsNode(e: EventTarget | null): asserts e is Node {
 }
 
 export const checkIfTodoExists = (todo: ToDo, todoArray: ToDo[]) => {
-  todoArray.forEach((el) => {
-    if (el.id === todo.id) return true;
-  });
+  for (let t of todoArray) {
+    if (t.id === todo.id) {
+      return true;
+    }
+  }
 
   return false;
 };
