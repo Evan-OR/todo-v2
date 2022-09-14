@@ -52,9 +52,6 @@ function TodoCreator(props: TodoCreatorProps) {
 
     return () => document.removeEventListener('mousedown', handler);
   }, []);
-  // useEffect(() => {
-  //   console.log(priority);
-  // }, [priority]);
 
   //#region Form Handlers
   const handleTitleInput = (e: any) => {

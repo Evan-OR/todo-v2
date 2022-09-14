@@ -25,7 +25,7 @@ function ToDoDisplay(props: ToDoDisplayProps) {
   getPriorityColour(todo.priority);
 
   return (
-    <div className={styles.todoWrapper}>
+    <div className={styles.todoWrapper} style={{ background: todo.colour }}>
       <div className={styles.icon}>{Icons[todo.iconId]}</div>
       <div className={styles.title}>{todo.title}</div>
       <div className={styles.priority} style={{ background: PriorityColours[getPriorityColour(todo.priority)] }}>
