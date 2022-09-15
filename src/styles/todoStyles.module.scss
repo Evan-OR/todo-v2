@@ -71,8 +71,8 @@ $mainColour: #353535;
     fill: inherit;
     // fill: $mainColour;
     user-select: none;
-    transition-property: transform;
-    transition-duration: 0.5s;
+    transition-property: transform, fill, opacity;
+    transition-duration: 0.3s;
 
     &:hover {
       fill: rgb(73, 165, 240);
