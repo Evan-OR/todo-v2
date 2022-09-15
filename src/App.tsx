@@ -4,7 +4,7 @@ import AddTodoButton from './components/AddTodoButton';
 import DateAndTimeDisplay from './components/DateAndTimeDisplay';
 import TodoCreator from './components/TodoCreator/TodoCreator';
 import TodoDisplayWrapper from './components/TodoDisplayWrapper';
-import './styles/App.css';
+import './styles/App.scss';
 
 function App() {
   const [showToDoCreator, setShowToDoCreator] = useState<boolean>(false);
