@@ -42,10 +42,16 @@ function App() {
     }
   };
 
+  const removeTodo = (todo: ToDo): void => {
+    const newArray = [...todos];
+    newArray.splice(todos.indexOf(todo), 1);
+    setTodos(newArray);
+  };
+
   return (
     <div className="appWrapper">
       {showToDoCreator ? (
-        <TodoCreator todo={editTodo} toggleToDoCreator={toggleToDoCreator} addTodo={addTodo} />
+        <TodoCreator todo={editTodo} toggleToDoCreator={toggleToDoCreator} addTodo={addTodo} removeTodo={removeTodo} />
       ) : (
         <></>
       )}

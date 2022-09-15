@@ -1,4 +1,4 @@
-.addBtn {
+.defaultbtn {
   display: flex;
   align-items: center;
 
@@ -10,7 +10,7 @@
 
   font-weight: bold;
   padding: 10px 12px;
-  margin: 5px;
+  margin: 5px 15px;
   user-select: none;
   cursor: pointer;
 
@@ -21,7 +21,9 @@
     transition-duration: 0.34s;
     transition-timing-function: cubic-bezier(0.07, 0.55, 0.58, 1);
   }
+}
 
+.addBtn {
   &:hover {
     border-radius: 10px;
     // background: linear-gradient(145deg, #f0f0f0, #cacaca);
@@ -31,6 +33,29 @@
     .icon {
       fill: rgb(73, 165, 240);
       transform: rotate(90deg);
+    }
+  }
+  &:active {
+    border-radius: 10px;
+    background: #e0e0e0;
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+  }
+}
+
+.removeBtn {
+  .icon {
+    transform: scale(0.9);
+  }
+
+  &:hover {
+    border-radius: 10px;
+    // background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+    color: rgb(240, 73, 73);
+
+    .icon {
+      fill: rgb(240, 73, 73);
+      transform: scale(1);
     }
   }
 

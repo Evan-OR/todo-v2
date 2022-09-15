@@ -7,15 +7,18 @@ import PrioritySelector from './PrioritySelector';
 import { Priority, assertIsNode, ToDo } from '../../utils';
 import BottomFade from './BottomFade';
 import CloseFormButton from './CloseFormButton';
+import SubmitButton from './SubmitButton';
+import RemoveButton from './RemoveButton';
 
 type TodoCreatorProps = {
   toggleToDoCreator: (todo: ToDo | null) => void;
   addTodo: (todo: ToDo) => void;
+  removeTodo: (todo: ToDo) => void;
   todo: ToDo | null;
 };
 
 function TodoCreator(props: TodoCreatorProps) {
-  const { toggleToDoCreator, addTodo, todo } = props;
+  const { toggleToDoCreator, addTodo, removeTodo, todo } = props;
 
   let [titleValue, setTitleValue] = useState<string>('');
   let [descriptionValue, setDescriptionValue] = useState<string>('');
@@ -88,6 +91,13 @@ function TodoCreator(props: TodoCreatorProps) {
     addTodo(finalTodoInformation);
     toggleToDoCreator(null);
   };
+
+  const removeHandler = () => {
+    console.log('called');
+    if (!todo) return;
+    removeTodo(todo);
+    toggleToDoCreator(null);
+  };
   //#endregion
 
   return (
@@ -120,11 +130,15 @@ function TodoCreator(props: TodoCreatorProps) {
           <div className={stlyes.title}>Priority</div>
           <PrioritySelector handlePrioritySelector={handlePrioritySelector} priority={priority} />
 
-          <div onClick={submitHandler} className={`${ButtonStlyes.addBtn} ${stlyes.submitButton}`}>
+          {/* <div onClick={submitHandler} className={`${ButtonStlyes.addBtn} ${stlyes.submitButton}`}>
             <div>Submit</div>{' '}
             <svg className={ButtonStlyes.icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
             </svg>
+          </div> */}
+          <div className={stlyes.submitButton}>
+            <SubmitButton submitHandler={submitHandler} />
+            {todo ? <RemoveButton removeHandler={removeHandler} /> : <></>}
           </div>
         </form>
         <BottomFade />
