@@ -64,12 +64,26 @@ $mainColour: #353535;
     border-radius: 50%;
   }
 
+  .completedButton {
+    font-weight: bold;
+    transition-property: transform, opacity, color, border-color;
+    transition-duration: 0.3s;
+    opacity: 0.2;
+    border-width: 2px;
+
+    &:hover {
+      color: rgb(73, 165, 240);
+      border-color: rgb(73, 165, 240);
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
   .editIcon {
     padding: 4px;
-    opacity: 0.3;
+    opacity: 0.2;
     width: 26px;
     fill: inherit;
-    // fill: $mainColour;
     user-select: none;
     transition-property: transform, fill, opacity;
     transition-duration: 0.3s;
@@ -85,7 +99,8 @@ $mainColour: #353535;
     border-radius: 10px;
     box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
 
-    .editIcon {
+    .editIcon,
+    .completedButton {
       opacity: 1;
     }
   }

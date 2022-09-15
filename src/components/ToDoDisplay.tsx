@@ -22,15 +22,22 @@ function ToDoDisplay(props: ToDoDisplayProps) {
     }
   };
 
-  getPriorityColour(todo.priority);
+  const p = getPriorityColour(todo.priority);
 
   return (
     <div className={styles.todoWrapper} style={{ background: todo.colour }}>
       <div className={styles.icon}>{Icons[todo.iconId]}</div>
+
       <div className={styles.title}>{todo.title}</div>
-      <div className={styles.priority} style={{ background: PriorityColours[getPriorityColour(todo.priority)] }}>
+
+      <div className={`${styles.priority} ${styles.completedButton}`} title="Completed">
+        ✓
+      </div>
+
+      <div className={styles.priority} style={{ background: PriorityColours[p], opacity: p }}>
         <div>{todo.priority.substring(0, 1)}</div>
       </div>
+
       <svg
         onClick={() => toggleToDoCreator(todo)}
         className={styles.editIcon}

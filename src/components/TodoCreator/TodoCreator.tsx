@@ -42,10 +42,11 @@ function TodoCreator(props: TodoCreatorProps) {
   };
 
   useEffect(() => {
+    //On Mount Set Up
     checkIfTodoWasPassed();
     title.current?.focus();
 
-    let handler = (event: MouseEvent) => {
+    const handler = (event: MouseEvent) => {
       assertIsNode(event.target);
       if (!modal.current?.contains(event.target)) {
         toggleToDoCreator(null);
@@ -93,7 +94,6 @@ function TodoCreator(props: TodoCreatorProps) {
   };
 
   const removeHandler = () => {
-    console.log('called');
     if (!todo) return;
     removeTodo(todo);
     toggleToDoCreator(null);
@@ -111,6 +111,7 @@ function TodoCreator(props: TodoCreatorProps) {
             onChange={handleTitleInput}
             type="text"
             placeholder="Interview Prep"
+            required
           ></input>
 
           <div className={stlyes.title}>Desc</div>
@@ -130,12 +131,6 @@ function TodoCreator(props: TodoCreatorProps) {
           <div className={stlyes.title}>Priority</div>
           <PrioritySelector handlePrioritySelector={handlePrioritySelector} priority={priority} />
 
-          {/* <div onClick={submitHandler} className={`${ButtonStlyes.addBtn} ${stlyes.submitButton}`}>
-            <div>Submit</div>{' '}
-            <svg className={ButtonStlyes.icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-            </svg>
-          </div> */}
           <div className={stlyes.submitButton}>
             <SubmitButton submitHandler={submitHandler} />
             {todo ? <RemoveButton removeHandler={removeHandler} /> : <></>}
