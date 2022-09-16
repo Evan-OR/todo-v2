@@ -9,6 +9,7 @@ import BottomFade from './BottomFade';
 import CloseFormButton from './CloseFormButton';
 import SubmitButton from './SubmitButton';
 import RemoveButton from './RemoveButton';
+import RequiredFieldAlert from './RequiredFieldAlert';
 
 type TodoCreatorProps = {
   toggleToDoCreator: (todo: ToDo | null) => void;
@@ -25,6 +26,8 @@ function TodoCreator(props: TodoCreatorProps) {
   let [iconId, setIconId] = useState<number>(0);
   let [colour, setColour] = useState<string>('#ececec');
   let [priority, setPriority] = useState<Priority>('None');
+
+  let [showRequiredFields, setShowRequiredFields] = useState(false);
 
   const modal = useRef<HTMLDivElement>(null);
   const title = useRef<HTMLInputElement>(null);
@@ -78,6 +81,10 @@ function TodoCreator(props: TodoCreatorProps) {
   };
 
   const submitHandler = () => {
+    if (!titleValue) {
+      setShowRequiredFields(true);
+      return;
+    }
     const d = new Date();
     let finalTodoInformation: ToDo = {} as ToDo;
 
@@ -98,13 +105,21 @@ function TodoCreator(props: TodoCreatorProps) {
     removeTodo(todo);
     toggleToDoCreator(null);
   };
+
+  const formPreventDefault = (e: any) => {
+    e.preventDefault();
+    submitHandler();
+  };
   //#endregion
 
   return (
     <div className={stlyes.mainWrapper}>
       <div ref={modal} className={stlyes.modalWrapper}>
-        <form className={stlyes.form}>
-          <div className={stlyes.title}>Title</div>
+        <form className={stlyes.form} onSubmit={formPreventDefault}>
+          <div className={stlyes.title}>
+            Title
+            {showRequiredFields ? <RequiredFieldAlert message="*Required Field" /> : <></>}
+          </div>
           <input
             ref={title}
             value={titleValue}
@@ -114,13 +129,13 @@ function TodoCreator(props: TodoCreatorProps) {
             required
           ></input>
 
-          <div className={stlyes.title}>Desc</div>
+          {/* <div className={stlyes.title}>Desc</div>
           <input
             type="text"
             value={descriptionValue}
             onChange={handleDescriptionInput}
             placeholder="Grind LeetCode"
-          ></input>
+          ></input> */}
 
           <div className={stlyes.title}>Icon</div>
           <IconChooser selectedId={iconId} handleIconId={handleIconId} />

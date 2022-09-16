@@ -11,9 +11,13 @@ function TodoDisplayWrapper(props: TodoDisplayProps) {
 
   return (
     <div className={styles.main}>
-      {toDosArray.map((toDo, idx) => (
-        <ToDoDisplay key={`${idx}${toDo.priority}`} todo={toDo} toggleToDoCreator={toggleToDoCreator} />
-      ))}
+      {toDosArray.length !== 0 ? (
+        toDosArray.map((toDo, idx) => (
+          <ToDoDisplay key={`${idx}${toDo.priority}`} todo={toDo} toggleToDoCreator={toggleToDoCreator} />
+        ))
+      ) : (
+        <div style={{ marginTop: '80px' }}>Add Something To Your To-Do List</div>
+      )}
     </div>
   );
 }

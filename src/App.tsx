@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ToDo, checkIfTodoExists } from './utils';
 import AddTodoButton from './components/AddTodoButton';
 import DateAndTimeDisplay from './components/DateAndTimeDisplay';
@@ -21,6 +21,10 @@ function App() {
     { id: 3, title: 'Do the shopping', desc: '', iconId: 6, colour: '#ececec', priority: 'Low' },
   ]);
   const [editTodo, setEditTodo] = useState<ToDo | null>(null);
+
+  // useEffect(() => {
+  //   console.log(todos);
+  // }, [todos]);
 
   const toggleToDoCreator = (todo: ToDo | null): void => {
     setEditTodo(todo);
