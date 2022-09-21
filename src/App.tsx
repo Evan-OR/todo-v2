@@ -5,6 +5,7 @@ import DateAndTimeDisplay from './components/DateAndTimeDisplay';
 import TodoCreator from './components/TodoCreator/TodoCreator';
 import TodoDisplayWrapper from './components/TodoDisplayWrapper';
 import './styles/App.scss';
+import FilterMenu from './components/Fitlering UI/FilterMenu';
 
 function App() {
   const [showToDoCreator, setShowToDoCreator] = useState<boolean>(false);
@@ -61,6 +62,7 @@ function App() {
       )}
       <DateAndTimeDisplay />
       <AddTodoButton toggleToDoCreator={toggleToDoCreator} />
+      <FilterMenu />
       <TodoDisplayWrapper toDosArray={todos} toggleToDoCreator={toggleToDoCreator} />
     </div>
   );
