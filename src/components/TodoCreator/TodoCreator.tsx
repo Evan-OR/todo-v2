@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import stlyes from '../../styles/todoCreatorStyles.module.scss';
-import ButtonStlyes from '../../styles/buttons.module.scss';
 import ColourChooser from './ColourChooser';
 import IconChooser from './IconChooser';
 import PrioritySelector from './PrioritySelector';
-import { Priority, assertIsNode, ToDo } from '../../utils';
 import BottomFade from './BottomFade';
 import CloseFormButton from './CloseFormButton';
 import SubmitButton from './SubmitButton';
 import RemoveButton from './RemoveButton';
 import RequiredFieldAlert from './RequiredFieldAlert';
+
+import stlyes from '../../styles/todoCreatorStyles.module.scss';
+
+import { Priority, assertIsNode, ToDo } from '../../utils';
 
 type TodoCreatorProps = {
   toggleToDoCreator: (todo: ToDo | null) => void;
