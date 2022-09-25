@@ -76,3 +76,16 @@ export const checkIfTodoExists = (todo: ToDo, todoArray: ToDo[]) => {
 
   return false;
 };
+
+export const getPriorityColour = (p: Priority): number => {
+  switch (p) {
+    case 'None':
+      return 0;
+    case 'Low':
+      return 1;
+    case 'Medium':
+      return 2;
+    case 'High':
+      return 3;
+  }
+};

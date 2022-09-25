@@ -5,11 +5,12 @@ import DateAndTimeDisplay from './components/DateAndTimeDisplay';
 import TodoCreator from './components/TodoCreator/TodoCreator';
 import TodoDisplayWrapper from './components/TodoDisplayWrapper';
 import './styles/App.scss';
-import FilterMenu from './components/Fitlering UI/FilterMenu';
-import CompletedTodosDisplay from './components/Fitlering UI/CompletedTodosDisplay';
+import FilterMenu from './components/NavBar UI/FilterMenu';
+import CompletedTodosDisplay from './components/NavBar UI/CompletedTodosModal';
 
 function App() {
   const [showToDoCreator, setShowToDoCreator] = useState<boolean>(false);
+  const [showCompletedTodoMenu, setShowCompletedTodoMenu] = useState<boolean>(false);
   const [todos, setTodos] = useState<ToDo[]>([
     {
       id: 1,
@@ -34,6 +35,11 @@ function App() {
     setShowToDoCreator(!showToDoCreator);
   };
 
+  const toggleCompletedTodoView = (): void => {
+    setShowCompletedTodoMenu(!showCompletedTodoMenu);
+  };
+
+  //#region todo functions
   const addTodo = (todo: ToDo): void => {
     if (!checkIfTodoExists(todo, todos)) {
       let newArray = [...todos, todo];
@@ -66,6 +72,24 @@ function App() {
     setCompletedTodos(newCompletedTodoArray);
   };
 
+  const returnToDo = (todo: ToDo): void => {
+    //Add todo back to active todo array
+    let newArray = [...todos, todo];
+    setTodos(newArray);
+
+    //Remove todo from completed todo array
+    const newTodoArray = [...completedTodos];
+    newTodoArray.splice(completedTodos.indexOf(todo), 1);
+    setCompletedTodos(newTodoArray);
+  };
+  const deleteTodo = (todo: ToDo): void => {
+    //Remove todo from completed todo array
+    const newTodoArray = [...completedTodos];
+    newTodoArray.splice(completedTodos.indexOf(todo), 1);
+    setCompletedTodos(newTodoArray);
+  };
+  //#endregion
+
   return (
     <div className="appWrapper">
       {showToDoCreator ? (
@@ -73,10 +97,19 @@ function App() {
       ) : (
         <></>
       )}
-      {/* <CompletedTodosDisplay todos={[]} /> */}
+      {showCompletedTodoMenu ? (
+        <CompletedTodosDisplay
+          todos={completedTodos}
+          toggleCompletedTodoView={toggleCompletedTodoView}
+          returnToDo={returnToDo}
+          deleteTodo={deleteTodo}
+        />
+      ) : (
+        <></>
+      )}
       <DateAndTimeDisplay />
       <AddTodoButton toggleToDoCreator={toggleToDoCreator} />
-      <FilterMenu />
+      <FilterMenu toggleCompletedTodoView={toggleCompletedTodoView} />
       <TodoDisplayWrapper toDosArray={todos} toggleToDoCreator={toggleToDoCreator} completeTodo={completeTodo} />
     </div>
   );

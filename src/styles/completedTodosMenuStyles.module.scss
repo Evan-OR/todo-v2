@@ -3,3 +3,28 @@
   font-size: 1.5rem;
   margin: 20px;
 }
+
+@mixin icon($width) {
+  display: flex;
+  margin: auto 6px;
+  width: $width;
+}
+@mixin hover($colour) {
+  transition-property: opacity, transform, fill;
+  transition-duration: 0.3s;
+  &:hover {
+    transform: scale(1.1);
+    fill: $colour;
+    cursor: pointer;
+  }
+}
+
+.returnTodo {
+  @include icon(26px);
+  @include hover(rgb(73, 165, 240));
+}
+
+.deleteTodo {
+  @include icon(21px);
+  @include hover(rgb(240, 73, 73));
+}

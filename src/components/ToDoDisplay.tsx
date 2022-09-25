@@ -1,5 +1,5 @@
 import styles from '../styles/todoStyles.module.scss';
-import { Icons, ToDo, Priority, PriorityColours } from '../utils';
+import { Icons, ToDo, Priority, PriorityColours, getPriorityColour } from '../utils';
 
 type ToDoDisplayProps = {
   todo: ToDo;
@@ -9,19 +9,6 @@ type ToDoDisplayProps = {
 
 function ToDoDisplay(props: ToDoDisplayProps) {
   const { todo, toggleToDoCreator, completeTodo } = props;
-
-  const getPriorityColour = (p: Priority): number => {
-    switch (p) {
-      case 'None':
-        return 0;
-      case 'Low':
-        return 1;
-      case 'Medium':
-        return 2;
-      case 'High':
-        return 3;
-    }
-  };
 
   const p = getPriorityColour(todo.priority);
 
