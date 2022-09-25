@@ -89,4 +89,10 @@
   margin: 0;
   user-select: none;
   cursor: pointer;
+
+  &:hover {
+    .iconSmall {
+      fill: rgb(73, 165, 240);
+    }
+  }
 }
