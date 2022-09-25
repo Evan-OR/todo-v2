@@ -4,10 +4,11 @@ import { Icons, ToDo, Priority, PriorityColours } from '../utils';
 type ToDoDisplayProps = {
   todo: ToDo;
   toggleToDoCreator: (todo: ToDo | null) => void;
+  completeTodo: (todo: ToDo) => void;
 };
 
 function ToDoDisplay(props: ToDoDisplayProps) {
-  const { todo, toggleToDoCreator } = props;
+  const { todo, toggleToDoCreator, completeTodo } = props;
 
   const getPriorityColour = (p: Priority): number => {
     switch (p) {
@@ -30,7 +31,11 @@ function ToDoDisplay(props: ToDoDisplayProps) {
 
       <div className={styles.title}>{todo.title}</div>
 
-      <div className={`${styles.priority} ${styles.completedButton}`} title="Completed">
+      <div
+        onClick={() => completeTodo(todo)}
+        className={`${styles.priority} ${styles.completedButton}`}
+        title="Completed"
+      >
         ✓
       </div>
 

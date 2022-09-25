@@ -6,6 +6,7 @@ import TodoCreator from './components/TodoCreator/TodoCreator';
 import TodoDisplayWrapper from './components/TodoDisplayWrapper';
 import './styles/App.scss';
 import FilterMenu from './components/Fitlering UI/FilterMenu';
+import CompletedTodosDisplay from './components/Fitlering UI/CompletedTodosDisplay';
 
 function App() {
   const [showToDoCreator, setShowToDoCreator] = useState<boolean>(false);
@@ -21,11 +22,12 @@ function App() {
     { id: 2, title: 'Clean house', desc: '', iconId: 1, colour: '#ececec', priority: 'Medium' },
     { id: 3, title: 'Do the shopping', desc: '', iconId: 6, colour: '#ececec', priority: 'Low' },
   ]);
+  const [completedTodos, setCompletedTodos] = useState<ToDo[]>([]);
   const [editTodo, setEditTodo] = useState<ToDo | null>(null);
 
-  // useEffect(() => {
-  //   console.log(todos);
-  // }, [todos]);
+  useEffect(() => {
+    console.log(completedTodos);
+  }, [completedTodos]);
 
   const toggleToDoCreator = (todo: ToDo | null): void => {
     setEditTodo(todo);
@@ -53,6 +55,17 @@ function App() {
     setTodos(newArray);
   };
 
+  const completeTodo = (todo: ToDo): void => {
+    //Remove todo from active todos
+    const newTodoArray = [...todos];
+    newTodoArray.splice(todos.indexOf(todo), 1);
+    setTodos(newTodoArray);
+
+    //Add todo to completed todos
+    let newCompletedTodoArray = [...completedTodos, todo];
+    setCompletedTodos(newCompletedTodoArray);
+  };
+
   return (
     <div className="appWrapper">
       {showToDoCreator ? (
@@ -60,10 +73,11 @@ function App() {
       ) : (
         <></>
       )}
+      {/* <CompletedTodosDisplay todos={[]} /> */}
       <DateAndTimeDisplay />
       <AddTodoButton toggleToDoCreator={toggleToDoCreator} />
       <FilterMenu />
-      <TodoDisplayWrapper toDosArray={todos} toggleToDoCreator={toggleToDoCreator} />
+      <TodoDisplayWrapper toDosArray={todos} toggleToDoCreator={toggleToDoCreator} completeTodo={completeTodo} />
     </div>
   );
 }
