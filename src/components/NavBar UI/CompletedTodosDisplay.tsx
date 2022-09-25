@@ -11,7 +11,10 @@ type CompletedTodosDisplayProps = {
 function CompletedTodosDisplay(props: CompletedTodosDisplayProps) {
   const { todo, returnToDo, deleteTodo } = props;
   return (
-    <div className={todoStyles.todoWrapper} style={{ width: '95%', marginLeft: 'auto', marginRight: 'auto' }}>
+    <div
+      className={todoStyles.todoWrapper}
+      style={{ width: '95%', marginLeft: 'auto', marginRight: 'auto', backgroundColor: todo.colour }}
+    >
       <div className={todoStyles.icon}>{Icons[todo.iconId]}</div>
       <div className={todoStyles.title}>{todo.title}</div>
 

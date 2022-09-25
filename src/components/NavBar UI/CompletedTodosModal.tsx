@@ -32,9 +32,13 @@ function CompletedTodosModal(props: CompletedTodosModalProps) {
       <div ref={modal} className={modalStyles.modalWrapper}>
         <div className={styles.title}>Completed Tasks</div>
         <div>
-          {todos.map((el) => (
-            <CompletedTodosDisplay key={el.id} todo={el} returnToDo={returnToDo} deleteTodo={deleteTodo} />
-          ))}
+          {todos.length > 0 ? (
+            todos.map((el) => (
+              <CompletedTodosDisplay key={el.id} todo={el} returnToDo={returnToDo} deleteTodo={deleteTodo} />
+            ))
+          ) : (
+            <div className={styles.mes}>You have no completed tasks</div>
+          )}
         </div>
       </div>
     </div>
