@@ -29,9 +29,14 @@
 .iconSmall {
   @include btnIcon();
   width: 14px;
+  transition-property: fill;
+  transition-duration: 0.3s;
 }
 
 .addBtn {
+  transition-property: color;
+  transition-duration: 0.3s;
+
   &:hover {
     border-radius: 10px;
     // background: linear-gradient(145deg, #f0f0f0, #cacaca);
