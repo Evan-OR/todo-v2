@@ -7,10 +7,12 @@ import TodoDisplayWrapper from './components/TodoDisplayWrapper';
 import './styles/App.scss';
 import FilterMenu from './components/NavBar UI/FilterMenu';
 import CompletedTodosDisplay from './components/NavBar UI/CompletedTodosModal';
+import FilterModal from './components/NavBar UI/FilterModal';
 
 function App() {
   const [showToDoCreator, setShowToDoCreator] = useState<boolean>(false);
   const [showCompletedTodoMenu, setShowCompletedTodoMenu] = useState<boolean>(false);
+  const [showFilterModalMenu, setShowFilterModalMenu] = useState<boolean>(false);
   const [todos, setTodos] = useState<ToDo[]>([
     {
       id: 1,
@@ -37,6 +39,10 @@ function App() {
 
   const toggleCompletedTodoView = (): void => {
     setShowCompletedTodoMenu(!showCompletedTodoMenu);
+  };
+
+  const toggleFilterModal = (): void => {
+    setShowFilterModalMenu(!showFilterModalMenu);
   };
 
   //#region todo functions
@@ -107,9 +113,10 @@ function App() {
       ) : (
         <></>
       )}
+      {showFilterModalMenu ? <FilterModal todos={todos} toggleFilterModal={toggleFilterModal} /> : <></>}
       <DateAndTimeDisplay />
       <AddTodoButton toggleToDoCreator={toggleToDoCreator} />
-      <FilterMenu toggleCompletedTodoView={toggleCompletedTodoView} />
+      <FilterMenu toggleFilterModal={toggleFilterModal} toggleCompletedTodoView={toggleCompletedTodoView} />
       <TodoDisplayWrapper toDosArray={todos} toggleToDoCreator={toggleToDoCreator} completeTodo={completeTodo} />
     </div>
   );
