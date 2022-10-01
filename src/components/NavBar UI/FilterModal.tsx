@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import modalStyles from '../../styles/todoCreatorStyles.module.scss';
 import closeButton from '../../styles/todoCreatorStyles.module.scss';
+import styles from '../../styles/completedTodosMenuStyles.module.scss';
 import { assertIsNode, ToDo } from '../../utils';
 
 type FilterModalProps = {
@@ -27,6 +28,9 @@ function FilterModal(props: FilterModalProps) {
   return (
     <div className={modalStyles.mainWrapper}>
       <div ref={modal} className={modalStyles.modalWrapper}>
+        <div className={styles.title}>Filter Tasks</div>
+
+        {/* Clsoe Button */}
         <div className={closeButton.closeButtonWrapper}>
           <div className={closeButton.closeIcon}>
             <svg onClick={() => toggleFilterModal()} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

@@ -17,7 +17,7 @@ function App() {
     {
       id: 1,
       title: 'Feed the cat',
-      desc: 'This one has a description',
+      desc: '',
       iconId: 8,
       colour: '#ececec',
       priority: 'High',
