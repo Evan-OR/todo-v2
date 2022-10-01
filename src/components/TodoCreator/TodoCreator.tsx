@@ -117,6 +117,8 @@ function TodoCreator(props: TodoCreatorProps) {
     <div className={stlyes.mainWrapper}>
       <div ref={modal} className={stlyes.modalWrapper}>
         <form className={stlyes.form} onSubmit={formPreventDefault}>
+          <div className={stlyes.mainTitle}>Create Task</div>
+
           <div className={stlyes.title}>
             Title
             {showRequiredFields ? <RequiredFieldAlert message="*Required Field" /> : <></>}

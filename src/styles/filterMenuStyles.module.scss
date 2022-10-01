@@ -7,3 +7,29 @@
 
   margin: 12px 0;
 }
+
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.mainContent {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filterTitle {
+  width: 100%;
+  margin-left: 2px;
+
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
