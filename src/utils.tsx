@@ -7,6 +7,8 @@ export type ToDo = {
   priority: Priority;
 };
 
+export type FilterType = 'None' | 'Priority' | 'Colour' | 'Icon';
+
 export type Priority = 'None' | 'Low' | 'Medium' | 'High';
 export const PriorityColours = ['', '#74cc69', '#ffd86e', '#f37272'];
 
@@ -89,3 +91,5 @@ export const getPriorityColour = (p: Priority): number => {
       return 3;
   }
 };
+
+//Secltion Sort

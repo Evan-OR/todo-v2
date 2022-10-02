@@ -1,10 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import modalStyles from '../../styles/todoCreatorStyles.module.scss';
 import titleStyle from '../../styles/completedTodosMenuStyles.module.scss';
 import buttonStyles from '../../styles/buttons.module.scss';
 import styles from '../../styles/filterMenuStyles.module.scss';
-import { assertIsNode, ToDo } from '../../utils';
-import FilterOption from './FilterOption';
+import { assertIsNode, ToDo, FilterType } from '../../utils';
 
 type FilterModalProps = {
   todos: ToDo[];
@@ -13,6 +12,10 @@ type FilterModalProps = {
 
 function FilterModal(props: FilterModalProps) {
   const { todos, toggleFilterModal } = props;
+
+  const [firstFilter, setFirstFilter] = useState<FilterType>('None');
+  const [secondFilter, setSecondFilter] = useState<FilterType>('None');
+
   const modal = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,6 +30,17 @@ function FilterModal(props: FilterModalProps) {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  useEffect(() => {
+    console.log(secondFilter);
+  }, [secondFilter]);
+
+  const handleFirstFilter = (e: any) => {
+    setFirstFilter(e.target.value);
+  };
+  const handleSecondFilter = (e: any) => {
+    setSecondFilter(e.target.value);
+  };
+
   return (
     <div className={modalStyles.mainWrapper}>
       <div ref={modal} className={modalStyles.modalWrapper}>
@@ -34,9 +48,20 @@ function FilterModal(props: FilterModalProps) {
 
         <div className={styles.mainContent}>
           <div className={styles.filterTitle}>First Filter</div>
-          <FilterOption />
+          <select onChange={handleFirstFilter} value={firstFilter}>
+            <option value="None">None</option>
+            <option value="Priority">Priority</option>
+            <option value="Colour">Colour</option>
+            <option value="Icon">Icon</option>
+          </select>
+
           <div className={styles.filterTitle}>Second Filter</div>
-          <FilterOption />
+          <select onChange={handleSecondFilter} value={secondFilter}>
+            <option value="None">None</option>
+            <option value="Priority">Priority</option>
+            <option value="Colour">Colour</option>
+            <option value="Icon">Icon</option>
+          </select>
 
           <div className={`${buttonStyles.defaultbtn} ${buttonStyles.addBtn}`} style={{ width: 'fit-content' }}>
             Apply Filter
