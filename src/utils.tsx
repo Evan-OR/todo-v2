@@ -7,7 +7,7 @@ export type ToDo = {
   priority: Priority;
 };
 
-export type FilterType = 'None' | 'Priority' | 'Colour' | 'Icon';
+export type FilterType = 'None' | 'High to Low Priority' | 'Low to High Priority' | 'Colour' | 'Icon';
 
 export type Priority = 'None' | 'Low' | 'Medium' | 'High';
 export const PriorityColours = ['', '#74cc69', '#ffd86e', '#f37272'];
@@ -93,3 +93,30 @@ export const getPriorityColour = (p: Priority): number => {
 };
 
 //Secltion Sort
+export const sortTasks = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
+  let priorityArrays: Array<ToDo[]> = [[], [], [], []];
+  //Low to high sort
+  for (let el of todos) {
+    switch (el.priority) {
+      case 'None':
+        priorityArrays[0].push(el);
+        break;
+      case 'Low':
+        priorityArrays[1].push(el);
+        break;
+      case 'Medium':
+        priorityArrays[2].push(el);
+        break;
+      case 'High':
+        priorityArrays[3].push(el);
+        break;
+    }
+  }
+
+  let joinedArrays: ToDo[] = [];
+
+  for (let arr of priorityArrays) {
+    joinedArrays = joinedArrays.concat(...arr);
+  }
+  console.log('Joined Arrays:', joinedArrays);
+};

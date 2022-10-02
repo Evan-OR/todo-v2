@@ -24,6 +24,8 @@ function App() {
     },
     { id: 2, title: 'Clean house', desc: '', iconId: 1, colour: '#ececec', priority: 'Medium' },
     { id: 3, title: 'Do the shopping', desc: '', iconId: 6, colour: '#ececec', priority: 'Low' },
+    { id: 4, title: 'LeedCode Preac', desc: '', iconId: 4, colour: '#ececec', priority: 'Medium' },
+    { id: 4, title: 'Finish this Project', desc: '', iconId: 4, colour: '#ececec', priority: 'High' },
   ]);
   const [completedTodos, setCompletedTodos] = useState<ToDo[]>([]);
   const [editTodo, setEditTodo] = useState<ToDo | null>(null);

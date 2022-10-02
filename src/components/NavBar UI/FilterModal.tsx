@@ -3,7 +3,7 @@ import modalStyles from '../../styles/todoCreatorStyles.module.scss';
 import titleStyle from '../../styles/completedTodosMenuStyles.module.scss';
 import buttonStyles from '../../styles/buttons.module.scss';
 import styles from '../../styles/filterMenuStyles.module.scss';
-import { assertIsNode, ToDo, FilterType } from '../../utils';
+import { assertIsNode, ToDo, FilterType, sortTasks } from '../../utils';
 
 type FilterModalProps = {
   todos: ToDo[];
@@ -30,17 +30,13 @@ function FilterModal(props: FilterModalProps) {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  useEffect(() => {
-    console.log(secondFilter);
-  }, [secondFilter]);
-
   const handleFirstFilter = (e: any) => {
     setFirstFilter(e.target.value);
   };
   const handleSecondFilter = (e: any) => {
     setSecondFilter(e.target.value);
   };
-
+  sortTasks(firstFilter, secondFilter, todos);
   return (
     <div className={modalStyles.mainWrapper}>
       <div ref={modal} className={modalStyles.modalWrapper}>
@@ -50,7 +46,8 @@ function FilterModal(props: FilterModalProps) {
           <div className={styles.filterTitle}>First Filter</div>
           <select onChange={handleFirstFilter} value={firstFilter}>
             <option value="None">None</option>
-            <option value="Priority">Priority</option>
+            <option value="High to Low Priority">High to Low Priority</option>
+            <option value="Low to High Priority">Low to High Priority</option>
             <option value="Colour">Colour</option>
             <option value="Icon">Icon</option>
           </select>
@@ -58,7 +55,8 @@ function FilterModal(props: FilterModalProps) {
           <div className={styles.filterTitle}>Second Filter</div>
           <select onChange={handleSecondFilter} value={secondFilter}>
             <option value="None">None</option>
-            <option value="Priority">Priority</option>
+            <option value="High to Low Priority">High to Low Priority</option>
+            <option value="Low to High Priority">Low to High Priority</option>
             <option value="Colour">Colour</option>
             <option value="Icon">Icon</option>
           </select>
