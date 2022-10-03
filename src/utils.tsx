@@ -94,11 +94,11 @@ export const getPriorityColour = (p: Priority): number => {
 
 //Secltion Sort
 
-export const sort = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
+export const sortTodos = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
   //If function was called with no filter set just return
   if (ff === 'None') return;
 
-  let filteredArray = [];
+  let filteredArray: Array<ToDo[]> = [];
 
   switch (ff) {
     case 'Low to High Priority':
@@ -108,13 +108,57 @@ export const sort = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
       filteredArray = sortLowToHighPriority(todos).reverse();
       break;
     case 'Colour':
+      filteredArray = sortByColourOrIcon(todos, true);
       break;
     case 'Icon':
+      filteredArray = sortByColourOrIcon(todos, false);
+      break;
+  }
+
+  console.log(filteredArray);
+
+  //If there is no second filter applied join the arrays together and return them
+  if (sf === 'None') {
+    let joinedArrays: ToDo[] = [];
+
+    for (let arr of filteredArray) {
+      joinedArrays = joinedArrays.concat(...arr);
+    }
+
+    return joinedArrays;
+  }
+
+  let secondFilter: Array<ToDo[]> = [...filteredArray];
+
+  switch (sf) {
+    case 'Low to High Priority':
+      // for
+      break;
+    case 'High to Low Priority':
+      filteredArray = sortLowToHighPriority(todos).reverse();
+      break;
+    case 'Colour':
+      filteredArray = sortByColourOrIcon(todos, true);
+      break;
+    case 'Icon':
+      filteredArray = sortByColourOrIcon(todos, false);
       break;
   }
 };
 
-const sortLowToHighPriority = (todos: ToDo[]): ToDo[] => {
+const applySecondFilter = (arr: Array<ToDo[]>, sort: (todos: ToDo[]) => Array<ToDo[]>): Array<ToDo[]> => {
+  let newArray: Array<ToDo[]> = [];
+
+  // for (let i = 0; i < arr.length; i++) {
+  //   for (let j = 0; j < arr.length; j++) {
+  //     arr[i] = sort(arr[i]);
+  //   }
+  // }
+
+  return arr;
+};
+
+const sortLowToHighPriority = (todos: ToDo[]): Array<ToDo[]> => {
   let priorityArrays: Array<ToDo[]> = [[], [], [], []];
   //Low to high sort
   for (let el of todos) {
@@ -134,16 +178,10 @@ const sortLowToHighPriority = (todos: ToDo[]): ToDo[] => {
     }
   }
 
-  let joinedArrays: ToDo[] = [];
-
-  for (let arr of priorityArrays) {
-    joinedArrays = joinedArrays.concat(...arr);
-  }
-
-  return joinedArrays;
+  return priorityArrays;
 };
 
-export const sortByColourOrIcon = (todos: ToDo[], sortingByColour: boolean): Array<ToDo[]> => {
+const sortByColourOrIcon = (todos: ToDo[], sortingByColour: boolean): Array<ToDo[]> => {
   let splitArrays: Array<ToDo[]> = [];
   let sortProperty: 'colour' | 'iconId' = sortingByColour ? 'colour' : 'iconId';
 
