@@ -93,7 +93,28 @@ export const getPriorityColour = (p: Priority): number => {
 };
 
 //Secltion Sort
-export const sortTasks = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
+
+export const sort = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
+  //If function was called with no filter set just return
+  if (ff === 'None') return;
+
+  let filteredArray = [];
+
+  switch (ff) {
+    case 'Low to High Priority':
+      filteredArray = sortLowToHighPriority(todos);
+      break;
+    case 'High to Low Priority':
+      filteredArray = sortLowToHighPriority(todos).reverse();
+      break;
+    case 'Colour':
+      break;
+    case 'Icon':
+      break;
+  }
+};
+
+const sortLowToHighPriority = (todos: ToDo[]): ToDo[] => {
   let priorityArrays: Array<ToDo[]> = [[], [], [], []];
   //Low to high sort
   for (let el of todos) {
@@ -118,5 +139,28 @@ export const sortTasks = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
   for (let arr of priorityArrays) {
     joinedArrays = joinedArrays.concat(...arr);
   }
-  console.log('Joined Arrays:', joinedArrays);
+
+  return joinedArrays;
+};
+
+export const sortByColourOrIcon = (todos: ToDo[], sortingByColour: boolean): Array<ToDo[]> => {
+  let splitArrays: Array<ToDo[]> = [];
+  let sortProperty: 'colour' | 'iconId' = sortingByColour ? 'colour' : 'iconId';
+
+  for (let todo of todos) {
+    //Check if thing is in the array
+    let typeInArray = false;
+    for (let i = 0; i < splitArrays.length; i++) {
+      if (todo[`${sortProperty}`] === splitArrays[i][0][`${sortProperty}`]) {
+        typeInArray = true;
+        splitArrays[i].push(todo);
+      }
+    }
+    //Wasn't found in array
+    if (!typeInArray) {
+      splitArrays.push([todo]);
+    }
+  }
+
+  return splitArrays;
 };

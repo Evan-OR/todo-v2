@@ -3,7 +3,7 @@ import modalStyles from '../../styles/todoCreatorStyles.module.scss';
 import titleStyle from '../../styles/completedTodosMenuStyles.module.scss';
 import buttonStyles from '../../styles/buttons.module.scss';
 import styles from '../../styles/filterMenuStyles.module.scss';
-import { assertIsNode, ToDo, FilterType, sortTasks } from '../../utils';
+import { assertIsNode, ToDo, FilterType, sortByColourOrIcon } from '../../utils';
 
 type FilterModalProps = {
   todos: ToDo[];
@@ -36,7 +36,7 @@ function FilterModal(props: FilterModalProps) {
   const handleSecondFilter = (e: any) => {
     setSecondFilter(e.target.value);
   };
-  sortTasks(firstFilter, secondFilter, todos);
+  sortByColourOrIcon(todos, false);
   return (
     <div className={modalStyles.mainWrapper}>
       <div ref={modal} className={modalStyles.modalWrapper}>
@@ -53,7 +53,7 @@ function FilterModal(props: FilterModalProps) {
           </select>
 
           <div className={styles.filterTitle}>Second Filter</div>
-          <select onChange={handleSecondFilter} value={secondFilter}>
+          <select disabled={firstFilter === 'None' ? true : false} onChange={handleSecondFilter} value={secondFilter}>
             <option value="None">None</option>
             <option value="High to Low Priority">High to Low Priority</option>
             <option value="Low to High Priority">Low to High Priority</option>
