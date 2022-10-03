@@ -159,6 +159,7 @@ const applySecondFilter = (arr: Array<ToDo[]>, sort: (todos: ToDo[]) => Array<To
 };
 
 const sortLowToHighPriority = (todos: ToDo[]): Array<ToDo[]> => {
+  //SECOND SORT BREFORE RETURNING
   let priorityArrays: Array<ToDo[]> = [[], [], [], []];
   //Low to high sort
   for (let el of todos) {
@@ -182,6 +183,7 @@ const sortLowToHighPriority = (todos: ToDo[]): Array<ToDo[]> => {
 };
 
 const sortByColourOrIcon = (todos: ToDo[], sortingByColour: boolean): Array<ToDo[]> => {
+  //SECOND SORT BREFORE RETURNING
   let splitArrays: Array<ToDo[]> = [];
   let sortProperty: 'colour' | 'iconId' = sortingByColour ? 'colour' : 'iconId';
 
