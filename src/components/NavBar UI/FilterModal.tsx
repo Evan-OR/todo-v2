@@ -54,11 +54,21 @@ function FilterModal(props: FilterModalProps) {
 
           <div className={styles.filterTitle}>Second Filter</div>
           <select disabled={firstFilter === 'None' ? true : false} onChange={handleSecondFilter} value={secondFilter}>
-            <option value="None">None</option>
-            <option value="High to Low Priority">High to Low Priority</option>
-            <option value="Low to High Priority">Low to High Priority</option>
-            <option value="Colour">Colour</option>
-            <option value="Icon">Icon</option>
+            <option disabled={firstFilter === 'None' ? true : false} value="None">
+              None
+            </option>
+            <option disabled={firstFilter === 'High to Low Priority' ? true : false} value="High to Low Priority">
+              High to Low Priority
+            </option>
+            <option disabled={firstFilter === 'Low to High Priority' ? true : false} value="Low to High Priority">
+              Low to High Priority
+            </option>
+            <option disabled={firstFilter === 'Colour' ? true : false} value="Colour">
+              Colour
+            </option>
+            <option disabled={firstFilter === 'Icon' ? true : false} value="Icon">
+              Icon
+            </option>
           </select>
 
           <div className={`${buttonStyles.defaultbtn} ${buttonStyles.addBtn}`} style={{ width: 'fit-content' }}>
