@@ -17,8 +17,11 @@ function FilterModal(props: FilterModalProps) {
   const [secondFilter, setSecondFilter] = useState<FilterType>('None');
 
   const modal = useRef<HTMLDivElement>(null);
+  const firstSelectRef = useRef<HTMLSelectElement>(null);
 
   useEffect(() => {
+    firstSelectRef.current?.focus();
+
     const handler = (event: MouseEvent) => {
       assertIsNode(event.target);
       if (!modal.current?.contains(event.target)) {
@@ -44,7 +47,7 @@ function FilterModal(props: FilterModalProps) {
 
         <div className={styles.mainContent}>
           <div className={styles.filterTitle}>First Filter</div>
-          <select onChange={handleFirstFilter} value={firstFilter}>
+          <select ref={firstSelectRef} onChange={handleFirstFilter} value={firstFilter}>
             <option value="None">None</option>
             <option value="High to Low Priority">High to Low Priority</option>
             <option value="Low to High Priority">Low to High Priority</option>
