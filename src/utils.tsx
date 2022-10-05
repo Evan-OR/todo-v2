@@ -115,8 +115,6 @@ export const sortTodos = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
       break;
   }
 
-  console.log(filteredArray);
-
   //If there is no second filter applied join the arrays together and return them
   if (sf === 'None') {
     let joinedArrays: ToDo[] = [];
@@ -128,34 +126,35 @@ export const sortTodos = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
     return joinedArrays;
   }
 
-  let secondFilter: Array<ToDo[]> = [...filteredArray];
+  let secondFilter: Array<ToDo[][]> = [];
 
   switch (sf) {
     case 'Low to High Priority':
-      // for
+      secondFilter = filteredArray.map((el) => sortLowToHighPriority(el));
       break;
     case 'High to Low Priority':
-      filteredArray = sortLowToHighPriority(todos).reverse();
+      secondFilter = filteredArray.map((el) => sortLowToHighPriority(el).reverse());
       break;
     case 'Colour':
-      filteredArray = sortByColourOrIcon(todos, true);
+      secondFilter = filteredArray.map((el) => sortByColourOrIcon(el, true));
       break;
     case 'Icon':
-      filteredArray = sortByColourOrIcon(todos, false);
+      secondFilter = filteredArray.map((el) => sortByColourOrIcon(el, false));
       break;
   }
+  console.log('filtered : ', returnFromSecondFilter(secondFilter));
+  console.log(secondFilter);
+  return secondFilter;
 };
 
-const applySecondFilter = (arr: Array<ToDo[]>, sort: (todos: ToDo[]) => Array<ToDo[]>): Array<ToDo[]> => {
-  let newArray: Array<ToDo[]> = [];
-
-  // for (let i = 0; i < arr.length; i++) {
-  //   for (let j = 0; j < arr.length; j++) {
-  //     arr[i] = sort(arr[i]);
-  //   }
-  // }
-
-  return arr;
+const returnFromSecondFilter = (arr: Array<any>): any => {
+  if (Array.isArray(arr[0])) {
+    for (let el of arr) {
+      return [...returnFromSecondFilter(el)];
+    }
+  } else {
+    return [...arr];
+  }
 };
 
 const sortLowToHighPriority = (todos: ToDo[]): Array<ToDo[]> => {

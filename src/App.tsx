@@ -19,13 +19,14 @@ function App() {
       title: 'Feed the cat',
       desc: '',
       iconId: 8,
-      colour: '#FB6969',
-      priority: 'High',
+      colour: '#FFC36D',
+      priority: 'Medium',
     },
     { id: 2, title: 'Clean house', desc: '', iconId: 4, colour: '#916EF7', priority: 'Medium' },
     { id: 3, title: 'Do the shopping', desc: '', iconId: 5, colour: '#ececec', priority: 'Low' },
-    { id: 4, title: 'LeedCode Preac', desc: '', iconId: 4, colour: '#916EF7', priority: 'Medium' },
-    { id: 5, title: 'Finish this Project', desc: '', iconId: 5, colour: '#FB6969', priority: 'High' },
+    { id: 4, title: 'Do something', desc: '', iconId: 5, colour: '#FFC36D', priority: 'Low' },
+    { id: 5, title: 'LeedCode Preac', desc: '', iconId: 4, colour: '#916EF7', priority: 'Medium' },
+    { id: 6, title: 'Finish this Project', desc: '', iconId: 5, colour: '#FFC36D', priority: 'High' },
   ]);
   const [completedTodos, setCompletedTodos] = useState<ToDo[]>([]);
   const [editTodo, setEditTodo] = useState<ToDo | null>(null);

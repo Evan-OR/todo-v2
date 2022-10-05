@@ -39,7 +39,7 @@ function FilterModal(props: FilterModalProps) {
   const handleSecondFilter = (e: any) => {
     setSecondFilter(e.target.value);
   };
-  sortTodos('High to Low Priority', 'None', todos);
+  sortTodos('Colour', 'High to Low Priority', todos);
   return (
     <div className={modalStyles.mainWrapper}>
       <div ref={modal} className={modalStyles.modalWrapper}>
