@@ -1,5 +1,5 @@
-import stlyes from '../../styles/todoCreatorStyles.module.scss';
-import { Priority } from '../../utils';
+import stlyes from "../../styles/todoCreatorStyles.module.scss";
+import { Priority, PriorityNames } from "../../utils";
 
 type PrioritySelectorProps = {
   priority: Priority;
@@ -9,7 +9,7 @@ type PrioritySelectorProps = {
 function PrioritySelector(props: PrioritySelectorProps) {
   const { priority, handlePrioritySelector } = props;
 
-  const pArray: Priority[] = ['None', 'Low', 'Medium', 'High'];
+  const pArray: Priority[] = [0, 1, 2, 3];
 
   return (
     <select
@@ -19,8 +19,8 @@ function PrioritySelector(props: PrioritySelectorProps) {
       value={priority}
     >
       {pArray.map((el) => (
-        <option style={{ background: '#ececec' }} key={el} value={el}>
-          {el}
+        <option style={{ background: "#ececec" }} key={el} value={el}>
+          {PriorityNames[el]}
         </option>
       ))}
     </select>

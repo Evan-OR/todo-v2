@@ -1,5 +1,11 @@
-import styles from '../styles/todoStyles.module.scss';
-import { Icons, ToDo, Priority, PriorityColours, getPriorityColour } from '../utils';
+import styles from "../styles/todoStyles.module.scss";
+import {
+  Icons,
+  ToDo,
+  Priority,
+  PriorityColours,
+  PriorityNames,
+} from "../utils";
 
 type ToDoDisplayProps = {
   todo: ToDo;
@@ -10,7 +16,7 @@ type ToDoDisplayProps = {
 function ToDoDisplay(props: ToDoDisplayProps) {
   const { todo, toggleToDoCreator, completeTodo } = props;
 
-  const p = getPriorityColour(todo.priority);
+  // const p = getPriorityColour(todo.priority);
 
   return (
     <div className={styles.todoWrapper} style={{ background: todo.colour }}>
@@ -26,8 +32,14 @@ function ToDoDisplay(props: ToDoDisplayProps) {
         ✓
       </div>
 
-      <div className={styles.priority} style={{ background: PriorityColours[p], opacity: p }}>
-        <div>{todo.priority.substring(0, 1)}</div>
+      <div
+        className={styles.priority}
+        style={{
+          background: PriorityColours[todo.priority],
+          opacity: todo.priority,
+        }}
+      >
+        <div>{PriorityNames[todo.priority].substring(0, 1)}</div>
       </div>
 
       <svg

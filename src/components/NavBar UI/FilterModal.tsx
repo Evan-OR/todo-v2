@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import modalStyles from '../../styles/todoCreatorStyles.module.scss';
-import titleStyle from '../../styles/completedTodosMenuStyles.module.scss';
-import buttonStyles from '../../styles/buttons.module.scss';
-import styles from '../../styles/filterMenuStyles.module.scss';
-import { assertIsNode, ToDo, FilterType, sortTodos } from '../../utils';
+import { useEffect, useRef, useState } from "react";
+import modalStyles from "../../styles/todoCreatorStyles.module.scss";
+import titleStyle from "../../styles/completedTodosMenuStyles.module.scss";
+import buttonStyles from "../../styles/buttons.module.scss";
+import styles from "../../styles/filterMenuStyles.module.scss";
+import { assertIsNode, ToDo, FilterType } from "../../utils";
 
 type FilterModalProps = {
   todos: ToDo[];
@@ -13,8 +13,8 @@ type FilterModalProps = {
 function FilterModal(props: FilterModalProps) {
   const { todos, toggleFilterModal } = props;
 
-  const [firstFilter, setFirstFilter] = useState<FilterType>('None');
-  const [secondFilter, setSecondFilter] = useState<FilterType>('None');
+  const [firstFilter, setFirstFilter] = useState<FilterType>("None");
+  const [secondFilter, setSecondFilter] = useState<FilterType>("None");
 
   const modal = useRef<HTMLDivElement>(null);
   const firstSelectRef = useRef<HTMLSelectElement>(null);
@@ -28,9 +28,9 @@ function FilterModal(props: FilterModalProps) {
         toggleFilterModal();
       }
     };
-    document.addEventListener('mousedown', handler);
+    document.addEventListener("mousedown", handler);
 
-    return () => document.removeEventListener('mousedown', handler);
+    return () => document.removeEventListener("mousedown", handler);
   }, []);
 
   const handleFirstFilter = (e: any) => {
@@ -39,7 +39,7 @@ function FilterModal(props: FilterModalProps) {
   const handleSecondFilter = (e: any) => {
     setSecondFilter(e.target.value);
   };
-  sortTodos('Colour', 'High to Low Priority', todos);
+
   return (
     <div className={modalStyles.mainWrapper}>
       <div ref={modal} className={modalStyles.modalWrapper}>
@@ -47,7 +47,11 @@ function FilterModal(props: FilterModalProps) {
 
         <div className={styles.mainContent}>
           <div className={styles.filterTitle}>First Filter</div>
-          <select ref={firstSelectRef} onChange={handleFirstFilter} value={firstFilter}>
+          <select
+            ref={firstSelectRef}
+            onChange={handleFirstFilter}
+            value={firstFilter}
+          >
             <option value="None">None</option>
             <option value="High to Low Priority">High to Low Priority</option>
             <option value="Low to High Priority">Low to High Priority</option>
@@ -56,25 +60,47 @@ function FilterModal(props: FilterModalProps) {
           </select>
 
           <div className={styles.filterTitle}>Second Filter</div>
-          <select disabled={firstFilter === 'None' ? true : false} onChange={handleSecondFilter} value={secondFilter}>
-            <option disabled={firstFilter === 'None' ? true : false} value="None">
+          <select
+            disabled={firstFilter === "None" ? true : false}
+            onChange={handleSecondFilter}
+            value={secondFilter}
+          >
+            <option
+              disabled={firstFilter === "None" ? true : false}
+              value="None"
+            >
               None
             </option>
-            <option disabled={firstFilter === 'High to Low Priority' ? true : false} value="High to Low Priority">
+            <option
+              disabled={firstFilter === "High to Low Priority" ? true : false}
+              value="High to Low Priority"
+            >
               High to Low Priority
             </option>
-            <option disabled={firstFilter === 'Low to High Priority' ? true : false} value="Low to High Priority">
+            <option
+              disabled={firstFilter === "Low to High Priority" ? true : false}
+              value="Low to High Priority"
+            >
               Low to High Priority
             </option>
-            <option disabled={firstFilter === 'Colour' ? true : false} value="Colour">
+            <option
+              disabled={firstFilter === "Colour" ? true : false}
+              value="Colour"
+            >
               Colour
             </option>
-            <option disabled={firstFilter === 'Icon' ? true : false} value="Icon">
+            <option
+              disabled={firstFilter === "Icon" ? true : false}
+              value="Icon"
+            >
               Icon
             </option>
           </select>
 
-          <div className={`${buttonStyles.defaultbtn} ${buttonStyles.addBtn}`} style={{ width: 'fit-content' }}>
+          <div
+            className={`${buttonStyles.defaultbtn} ${buttonStyles.addBtn}`}
+            style={{ width: "fit-content" }}
+          >
             Apply Filter
           </div>
         </div>
@@ -82,7 +108,11 @@ function FilterModal(props: FilterModalProps) {
         {/* Close Button */}
         <div className={modalStyles.closeButtonWrapper}>
           <div className={modalStyles.closeIcon}>
-            <svg onClick={() => toggleFilterModal()} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <svg
+              onClick={() => toggleFilterModal()}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+            >
               <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
             </svg>
           </div>

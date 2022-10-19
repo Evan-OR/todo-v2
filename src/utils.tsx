@@ -7,12 +7,27 @@ export type ToDo = {
   priority: Priority;
 };
 
-export type FilterType = 'None' | 'High to Low Priority' | 'Low to High Priority' | 'Colour' | 'Icon';
+export type FilterType =
+  | "None"
+  | "High to Low Priority"
+  | "Low to High Priority"
+  | "Colour"
+  | "Icon";
 
-export type Priority = 'None' | 'Low' | 'Medium' | 'High';
-export const PriorityColours = ['', '#74cc69', '#ffd86e', '#f37272'];
+export type Priority = 0 | 1 | 2 | 3;
+export const PriorityNames: string[] = ["None", "Low", "Medium", "High"];
+export const PriorityColours = ["", "#74cc69", "#ffd86e", "#f37272"];
 
-export const Colours = ['#ececec', '#FB6969', '#76EC59', '#49a5f0', '#916EF7', '#FB97FC', '#FFEB6D', '#FFC36D'];
+export const Colours = [
+  "#ececec",
+  "#FB6969",
+  "#76EC59",
+  "#49a5f0",
+  "#916EF7",
+  "#FB97FC",
+  "#FFEB6D",
+  "#FFC36D",
+];
 
 export const Icons = [
   null,
@@ -64,7 +79,7 @@ export const Icons = [
 ];
 
 export function assertIsNode(e: EventTarget | null): asserts e is Node {
-  if (!e || !('nodeType' in e)) {
+  if (!e || !("nodeType" in e)) {
     throw new Error(`Node expected`);
   }
 }
@@ -79,73 +94,75 @@ export const checkIfTodoExists = (todo: ToDo, todoArray: ToDo[]) => {
   return false;
 };
 
-export const getPriorityColour = (p: Priority): number => {
-  switch (p) {
-    case 'None':
-      return 0;
-    case 'Low':
-      return 1;
-    case 'Medium':
-      return 2;
-    case 'High':
-      return 3;
-  }
-};
+// export const getPriorityColour = (p: Priority): number => {
+//   switch (p) {
+//     case "None":
+//       return 0;
+//     case "Low":
+//       return 1;
+//     case "Medium":
+//       return 2;
+//     case "High":
+//       return 3;
+//   }
+// };
 
 //Secltion Sort
 
-export const sortTodos = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
-  //If function was called with no filter set just return
-  if (ff === 'None') return;
+// export const sortTodos = (ff: FilterType, sf: FilterType, todos: ToDo[]) => {
+//   //If function was called with no filter set just return
+//   if (ff === "None") return;
 
-  let filteredArray: Array<ToDo[]> = [];
+//   let filteredArray: Array<ToDo[]> = [];
 
-  switch (ff) {
-    case 'Low to High Priority':
-      filteredArray = sortLowToHighPriority(todos);
-      break;
-    case 'High to Low Priority':
-      filteredArray = sortLowToHighPriority(todos).reverse();
-      break;
-    case 'Colour':
-      filteredArray = sortByColourOrIcon(todos, true);
-      break;
-    case 'Icon':
-      filteredArray = sortByColourOrIcon(todos, false);
-      break;
-  }
+//   switch (ff) {
+//     case "Low to High Priority":
+//       filteredArray = sortLowToHighPriority(todos);
+//       break;
+//     case "High to Low Priority":
+//       filteredArray = sortLowToHighPriority(todos).reverse();
+//       break;
+//     case "Colour":
+//       filteredArray = sortByColourOrIcon(todos, true);
+//       break;
+//     case "Icon":
+//       filteredArray = sortByColourOrIcon(todos, false);
+//       break;
+//   }
 
-  //If there is no second filter applied join the arrays together and return them
-  if (sf === 'None') {
-    let joinedArrays: ToDo[] = [];
+//   //If there is no second filter applied join the arrays together and return them
+//   if (sf === "None") {
+//     let joinedArrays: ToDo[] = [];
 
-    for (let arr of filteredArray) {
-      joinedArrays = joinedArrays.concat(...arr);
-    }
+//     for (let arr of filteredArray) {
+//       joinedArrays = joinedArrays.concat(...arr);
+//     }
 
-    return joinedArrays;
-  }
+//     return joinedArrays;
+//   }
 
-  let secondFilter: Array<ToDo[][]> = [];
+//   let secondFilter: Array<ToDo[][]> = [];
 
-  switch (sf) {
-    case 'Low to High Priority':
-      secondFilter = filteredArray.map((el) => sortLowToHighPriority(el));
-      break;
-    case 'High to Low Priority':
-      secondFilter = filteredArray.map((el) => sortLowToHighPriority(el).reverse());
-      break;
-    case 'Colour':
-      secondFilter = filteredArray.map((el) => sortByColourOrIcon(el, true));
-      break;
-    case 'Icon':
-      secondFilter = filteredArray.map((el) => sortByColourOrIcon(el, false));
-      break;
-  }
-  console.log('filtered : ', returnFromSecondFilter(secondFilter));
-  console.log(secondFilter);
-  return secondFilter;
-};
+//   switch (sf) {
+//     case "Low to High Priority":
+//       secondFilter = filteredArray.map((el) => sortLowToHighPriority(el));
+//       break;
+//     case "High to Low Priority":
+//       secondFilter = filteredArray.map((el) =>
+//         sortLowToHighPriority(el).reverse()
+//       );
+//       break;
+//     case "Colour":
+//       secondFilter = filteredArray.map((el) => sortByColourOrIcon(el, true));
+//       break;
+//     case "Icon":
+//       secondFilter = filteredArray.map((el) => sortByColourOrIcon(el, false));
+//       break;
+//   }
+//   console.log("filtered : ", returnFromSecondFilter(secondFilter));
+//   console.log(secondFilter);
+//   return secondFilter;
+// };
 
 const returnFromSecondFilter = (arr: Array<any>): any => {
   if (Array.isArray(arr[0])) {
@@ -157,34 +174,37 @@ const returnFromSecondFilter = (arr: Array<any>): any => {
   }
 };
 
-const sortLowToHighPriority = (todos: ToDo[]): Array<ToDo[]> => {
-  //SECOND SORT BREFORE RETURNING
-  let priorityArrays: Array<ToDo[]> = [[], [], [], []];
-  //Low to high sort
-  for (let el of todos) {
-    switch (el.priority) {
-      case 'None':
-        priorityArrays[0].push(el);
-        break;
-      case 'Low':
-        priorityArrays[1].push(el);
-        break;
-      case 'Medium':
-        priorityArrays[2].push(el);
-        break;
-      case 'High':
-        priorityArrays[3].push(el);
-        break;
-    }
-  }
+// const sortLowToHighPriority = (todos: ToDo[]): Array<ToDo[]> => {
+//   //SECOND SORT BREFORE RETURNING
+//   let priorityArrays: Array<ToDo[]> = [[], [], [], []];
+//   //Low to high sort
+//   for (let el of todos) {
+//     switch (el.priority) {
+//       case "None":
+//         priorityArrays[0].push(el);
+//         break;
+//       case "Low":
+//         priorityArrays[1].push(el);
+//         break;
+//       case "Medium":
+//         priorityArrays[2].push(el);
+//         break;
+//       case "High":
+//         priorityArrays[3].push(el);
+//         break;
+//     }
+//   }
 
-  return priorityArrays;
-};
+//   return priorityArrays;
+// };
 
-const sortByColourOrIcon = (todos: ToDo[], sortingByColour: boolean): Array<ToDo[]> => {
+const sortByColourOrIcon = (
+  todos: ToDo[],
+  sortingByColour: boolean
+): Array<ToDo[]> => {
   //SECOND SORT BREFORE RETURNING
   let splitArrays: Array<ToDo[]> = [];
-  let sortProperty: 'colour' | 'iconId' = sortingByColour ? 'colour' : 'iconId';
+  let sortProperty: "colour" | "iconId" = sortingByColour ? "colour" : "iconId";
 
   for (let todo of todos) {
     //Check if thing is in the array
