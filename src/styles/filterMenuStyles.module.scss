@@ -26,10 +26,15 @@ select {
 }
 
 .filterTitle {
-  width: 100%;
   margin-left: 2px;
 
   text-align: left;
   font-weight: bold;
   font-size: 1.3rem;
+}
+
+.applyButtonWrapper {
+  width: fit-content;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }

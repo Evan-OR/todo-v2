@@ -1,67 +1,65 @@
-import { useEffect, useState } from "react";
-import { ToDo, checkIfTodoExists } from "./utils";
-import AddTodoButton from "./components/AddTodoButton";
-import DateAndTimeDisplay from "./components/DateAndTimeDisplay";
-import TodoCreator from "./components/TodoCreator/TodoCreator";
-import TodoDisplayWrapper from "./components/TodoDisplayWrapper";
-import "./styles/App.scss";
-import FilterMenu from "./components/NavBar UI/FilterMenu";
-import CompletedTodosDisplay from "./components/NavBar UI/CompletedTodosModal";
-import FilterModal from "./components/NavBar UI/FilterModal";
+import { useEffect, useState } from 'react';
+import { ToDo, checkIfTodoExists, sortTodos } from './utils';
+import AddTodoButton from './components/AddTodoButton';
+import DateAndTimeDisplay from './components/DateAndTimeDisplay';
+import TodoCreator from './components/TodoCreator/TodoCreator';
+import TodoDisplayWrapper from './components/TodoDisplayWrapper';
+import './styles/App.scss';
+import FilterMenu from './components/NavBar UI/FilterMenu';
+import CompletedTodosDisplay from './components/NavBar UI/CompletedTodosModal';
+import FilterModal from './components/NavBar UI/FilterModal';
 
 function App() {
   const [showToDoCreator, setShowToDoCreator] = useState<boolean>(false);
-  const [showCompletedTodoMenu, setShowCompletedTodoMenu] =
-    useState<boolean>(false);
-  const [showFilterModalMenu, setShowFilterModalMenu] =
-    useState<boolean>(false);
+  const [showCompletedTodoMenu, setShowCompletedTodoMenu] = useState<boolean>(false);
+  const [showFilterModalMenu, setShowFilterModalMenu] = useState<boolean>(false);
   const [todos, setTodos] = useState<ToDo[]>([
     {
       id: 1,
-      title: "Feed the cat",
-      desc: "",
+      title: 'Feed the cat',
+      desc: '',
       iconId: 8,
-      colour: "#FFC36D",
+      colour: '#FFC36D',
       priority: 1,
     },
     {
       id: 2,
-      title: "Clean house",
-      desc: "",
+      title: 'Clean house',
+      desc: '',
       iconId: 4,
-      colour: "#916EF7",
+      colour: '#916EF7',
       priority: 2,
     },
     {
       id: 3,
-      title: "Do the shopping",
-      desc: "",
+      title: 'Do the shopping',
+      desc: '',
       iconId: 5,
-      colour: "#ececec",
+      colour: '#ececec',
       priority: 1,
     },
     {
       id: 4,
-      title: "Do something",
-      desc: "",
+      title: 'Do something',
+      desc: '',
       iconId: 5,
-      colour: "#FFC36D",
+      colour: '#FFC36D',
       priority: 1,
     },
     {
       id: 5,
-      title: "LeedCode Preac",
-      desc: "",
+      title: 'LeedCode Preac',
+      desc: '',
       iconId: 4,
-      colour: "#916EF7",
+      colour: '#916EF7',
       priority: 2,
     },
     {
       id: 6,
-      title: "Finish this Project",
-      desc: "",
+      title: 'Finish this Project',
+      desc: '',
       iconId: 5,
-      colour: "#FFC36D",
+      colour: '#FFC36D',
       priority: 3,
     },
   ]);
@@ -134,17 +132,17 @@ function App() {
     newTodoArray.splice(completedTodos.indexOf(todo), 1);
     setCompletedTodos(newTodoArray);
   };
+
+  const applyTodoFilter = (newTodos: ToDo[]) => {
+    setTodos([...newTodos]);
+  };
   //#endregion
 
+  console.log(sortTodos('Icon', todos)?.map((el) => el.iconId));
   return (
     <div className="appWrapper">
       {showToDoCreator ? (
-        <TodoCreator
-          todo={editTodo}
-          toggleToDoCreator={toggleToDoCreator}
-          addTodo={addTodo}
-          removeTodo={removeTodo}
-        />
+        <TodoCreator todo={editTodo} toggleToDoCreator={toggleToDoCreator} addTodo={addTodo} removeTodo={removeTodo} />
       ) : (
         <></>
       )}
@@ -159,21 +157,14 @@ function App() {
         <></>
       )}
       {showFilterModalMenu ? (
-        <FilterModal todos={todos} toggleFilterModal={toggleFilterModal} />
+        <FilterModal todos={todos} toggleFilterModal={toggleFilterModal} applyFilter={applyTodoFilter} />
       ) : (
         <></>
       )}
       <DateAndTimeDisplay />
       <AddTodoButton toggleToDoCreator={toggleToDoCreator} />
-      <FilterMenu
-        toggleFilterModal={toggleFilterModal}
-        toggleCompletedTodoView={toggleCompletedTodoView}
-      />
-      <TodoDisplayWrapper
-        toDosArray={todos}
-        toggleToDoCreator={toggleToDoCreator}
-        completeTodo={completeTodo}
-      />
+      <FilterMenu toggleFilterModal={toggleFilterModal} toggleCompletedTodoView={toggleCompletedTodoView} />
+      <TodoDisplayWrapper toDosArray={todos} toggleToDoCreator={toggleToDoCreator} completeTodo={completeTodo} />
     </div>
   );
 }

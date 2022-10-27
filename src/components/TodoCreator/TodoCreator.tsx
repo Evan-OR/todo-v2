@@ -1,16 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import ColourChooser from "./ColourChooser";
-import IconChooser from "./IconChooser";
-import PrioritySelector from "./PrioritySelector";
-import BottomFade from "./BottomFade";
-import CloseFormButton from "./CloseFormButton";
-import SubmitButton from "./SubmitButton";
-import RemoveButton from "./RemoveButton";
-import RequiredFieldAlert from "./RequiredFieldAlert";
+import { useEffect, useRef, useState } from 'react';
+import ColourChooser from './ColourChooser';
+import IconChooser from './IconChooser';
+import PrioritySelector from './PrioritySelector';
+import BottomFade from './BottomFade';
+import CloseFormButton from './CloseFormButton';
+import SubmitButton from './ModalMainButton';
+import RemoveButton from './RemoveButton';
+import RequiredFieldAlert from './RequiredFieldAlert';
 
-import stlyes from "../../styles/todoCreatorStyles.module.scss";
+import stlyes from '../../styles/todoCreatorStyles.module.scss';
 
-import { Priority, assertIsNode, ToDo } from "../../utils";
+import { Priority, assertIsNode, ToDo } from '../../utils';
 
 type TodoCreatorProps = {
   toggleToDoCreator: (todo: ToDo | null) => void;
@@ -22,10 +22,10 @@ type TodoCreatorProps = {
 function TodoCreator(props: TodoCreatorProps) {
   const { toggleToDoCreator, addTodo, removeTodo, todo } = props;
 
-  let [titleValue, setTitleValue] = useState<string>("");
-  let [descriptionValue, setDescriptionValue] = useState<string>("");
+  let [titleValue, setTitleValue] = useState<string>('');
+  let [descriptionValue, setDescriptionValue] = useState<string>('');
   let [iconId, setIconId] = useState<number>(0);
-  let [colour, setColour] = useState<string>("#ececec");
+  let [colour, setColour] = useState<string>('#ececec');
   let [priority, setPriority] = useState<Priority>(0);
 
   let [showRequiredFields, setShowRequiredFields] = useState(false);
@@ -56,9 +56,9 @@ function TodoCreator(props: TodoCreatorProps) {
         toggleToDoCreator(null);
       }
     };
-    document.addEventListener("mousedown", handler);
+    document.addEventListener('mousedown', handler);
 
-    return () => document.removeEventListener("mousedown", handler);
+    return () => document.removeEventListener('mousedown', handler);
   }, []);
 
   //#region Form Handlers
@@ -95,9 +95,7 @@ function TodoCreator(props: TodoCreatorProps) {
     finalTodoInformation.colour = colour;
     finalTodoInformation.priority = priority;
 
-    todo
-      ? (finalTodoInformation.id = todo.id)
-      : (finalTodoInformation.id = d.getTime());
+    todo ? (finalTodoInformation.id = todo.id) : (finalTodoInformation.id = d.getTime());
 
     addTodo(finalTodoInformation);
     toggleToDoCreator(null);
@@ -123,11 +121,7 @@ function TodoCreator(props: TodoCreatorProps) {
 
           <div className={stlyes.title}>
             Title
-            {showRequiredFields ? (
-              <RequiredFieldAlert message="*Required Field" />
-            ) : (
-              <></>
-            )}
+            {showRequiredFields ? <RequiredFieldAlert message="*Required Field" /> : <></>}
           </div>
           <input
             ref={title}
@@ -153,13 +147,10 @@ function TodoCreator(props: TodoCreatorProps) {
           <ColourChooser handleColour={handleColour} selectedColour={colour} />
 
           <div className={stlyes.title}>Priority</div>
-          <PrioritySelector
-            handlePrioritySelector={handlePrioritySelector}
-            priority={priority}
-          />
+          <PrioritySelector handlePrioritySelector={handlePrioritySelector} priority={priority} />
 
           <div className={stlyes.submitButton}>
-            <SubmitButton submitHandler={submitHandler} />
+            <SubmitButton buttonText="Submit" onClickFunction={submitHandler} />
             {todo ? <RemoveButton removeHandler={removeHandler} /> : <></>}
           </div>
         </form>
