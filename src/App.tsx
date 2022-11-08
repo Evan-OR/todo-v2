@@ -92,7 +92,6 @@ function App() {
   };
   //#endregion
 
-  console.log(sortTodos('Icon', todos)?.map((el) => el.iconId));
   return (
     <div className="appWrapper">
       {showToDoCreator ? (
