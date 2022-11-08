@@ -72,7 +72,7 @@
         align-items: center;
       }
 
-      input[type="text"],
+      input[type='text'],
       select {
         width: 100%;
         padding: 12px 20px;
@@ -83,7 +83,7 @@
         box-sizing: border-box;
       }
 
-      input[type="datetime-local"],
+      input[type='datetime-local'],
       select {
         width: 100%;
         padding: 12px 20px;
@@ -112,19 +112,21 @@
   padding: 5px;
   width: 40px;
   height: 40px;
-  transform: rotate(45deg);
+  transform: rotateZ(45deg);
   fill: inherit;
-  transition-property: fill;
-  transition-duration: 0.3s;
 
   .closeIcon {
     position: sticky;
     top: 0;
+    transition-property: transform;
+    transition-duration: 0.3s;
   }
 
   &:hover {
     cursor: pointer;
-    fill: rgb(73, 165, 240);
+    .closeIcon {
+      transform: scale(1.1);
+    }
   }
 }
 
@@ -223,12 +225,5 @@
   width: 100%;
   height: 55px;
   // background-color: rebeccapurple;
-  background-image: linear-gradient(
-    to top,
-    #ececec,
-    #ececec,
-    #ecececa4,
-    #ececec59,
-    #ececec00
-  );
+  background-image: linear-gradient(to top, #ececec, #ececec, #ecececa4, #ececec59, #ececec00);
 }

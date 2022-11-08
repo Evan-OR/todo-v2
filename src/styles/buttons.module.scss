@@ -40,11 +40,11 @@
   &:hover {
     border-radius: 10px;
     // background: linear-gradient(145deg, #f0f0f0, #cacaca);
-    box-shadow: 4px 4px 4px #bebebe, -5px -5px 10px #ffffff;
-    color: rgb(73, 165, 240);
+    box-shadow: 4px 4px 4px #bebebe, -4px -4px 4px #ffffff;
+    // color: rgb(73, 165, 240);
 
     .icon {
-      fill: rgb(73, 165, 240);
+      // fill: rgb(73, 165, 240);
       transform: rotate(90deg);
     }
   }
@@ -95,9 +95,17 @@
   user-select: none;
   cursor: pointer;
 
+  .iconSmall {
+    transition-property: transform;
+    transition-duration: 0.3s;
+  }
+
   &:hover {
     .iconSmall {
-      fill: rgb(73, 165, 240);
+      transform: scale(1.1);
+    }
+    #filterIcon {
+      transform: scale(1.14);
     }
   }
 }
