@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ToDo, checkIfTodoExists, sortTodos } from './utils';
+import { ToDo, checkIfTodoExists, sortTodos, readLocalStorage, writeToLocalStorage } from './utils';
 import AddTodoButton from './components/AddTodoButton';
 import DateAndTimeDisplay from './components/DateAndTimeDisplay';
 import TodoCreator from './components/TodoCreator/TodoCreator';
@@ -13,61 +13,15 @@ function App() {
   const [showToDoCreator, setShowToDoCreator] = useState<boolean>(false);
   const [showCompletedTodoMenu, setShowCompletedTodoMenu] = useState<boolean>(false);
   const [showFilterModalMenu, setShowFilterModalMenu] = useState<boolean>(false);
-  const [todos, setTodos] = useState<ToDo[]>([
-    {
-      id: 1,
-      title: 'Feed the cat',
-      desc: '',
-      iconId: 8,
-      colour: '#FFC36D',
-      priority: 1,
-    },
-    {
-      id: 2,
-      title: 'Clean house',
-      desc: '',
-      iconId: 4,
-      colour: '#916EF7',
-      priority: 2,
-    },
-    {
-      id: 3,
-      title: 'Do the shopping',
-      desc: '',
-      iconId: 5,
-      colour: '#ececec',
-      priority: 1,
-    },
-    {
-      id: 4,
-      title: 'Do something',
-      desc: '',
-      iconId: 5,
-      colour: '#FFC36D',
-      priority: 1,
-    },
-    {
-      id: 5,
-      title: 'LeedCode Preac',
-      desc: '',
-      iconId: 4,
-      colour: '#916EF7',
-      priority: 2,
-    },
-    {
-      id: 6,
-      title: 'Finish this Project',
-      desc: '',
-      iconId: 5,
-      colour: '#FFC36D',
-      priority: 3,
-    },
-  ]);
-  const [completedTodos, setCompletedTodos] = useState<ToDo[]>([]);
+  const [todos, setTodos] = useState<ToDo[]>(readLocalStorage('todos'));
+  const [completedTodos, setCompletedTodos] = useState<ToDo[]>(readLocalStorage('completedTodos'));
   const [editTodo, setEditTodo] = useState<ToDo | null>(null);
 
   useEffect(() => {
-    console.log(completedTodos);
+    writeToLocalStorage(todos, 'todos');
+  }, [todos]);
+  useEffect(() => {
+    writeToLocalStorage(completedTodos, 'completedTodos');
   }, [completedTodos]);
 
   const toggleToDoCreator = (todo: ToDo | null): void => {

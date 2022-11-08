@@ -145,3 +145,17 @@ const sortByColourOrIcon = (todos: ToDo[], sortingByColour: boolean): Array<ToDo
 
   return splitArrays;
 };
+
+type StorageType = 'todos' | 'completedTodos';
+export const writeToLocalStorage = (todos: ToDo[], storageName: StorageType): void => {
+  localStorage.setItem(storageName, JSON.stringify(todos));
+};
+export const readLocalStorage = (storageName: StorageType): ToDo[] => {
+  let storage = localStorage.getItem(storageName);
+
+  if (storage !== null) {
+    return JSON.parse(storage);
+  } else {
+    return [];
+  }
+};
