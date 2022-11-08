@@ -22,7 +22,7 @@ function TodoDisplayWrapper(props: TodoDisplayProps) {
           />
         ))
       ) : (
-        <div style={{ marginTop: '80px' }}>Add Something To Your To-Do List</div>
+        <div style={{ marginTop: '80px' }}>Add Something To Your Task List</div>
       )}
     </div>
   );
