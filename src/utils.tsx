@@ -13,7 +13,16 @@ export type Priority = 0 | 1 | 2 | 3;
 export const PriorityNames: string[] = ['None', 'Low', 'Medium', 'High'];
 export const PriorityColours = ['', '#74cc69', '#ffd86e', '#f37272'];
 
-export const Colours = ['#ececec', '#FB6969', '#76EC59', '#49a5f0', '#916EF7', '#FB97FC', '#FFEB6D', '#FFC36D'];
+export const Colours = [
+  '#ececec',
+  '#fb696999',
+  '#34ff2699',
+  '#35c3e399',
+  '#6b41e599',
+  '#fc71fd99',
+  '#f7ff7399',
+  '#ffaa3099',
+];
 
 export const Icons = [
   null,
@@ -82,7 +91,7 @@ export const checkIfTodoExists = (todo: ToDo, todoArray: ToDo[]) => {
 
 export const sortTodos = (ff: FilterType, todos: ToDo[]): ToDo[] => {
   //If function was called with no filter set just return
-  if (ff === 'None') return [];
+  if (ff === 'None') return todos;
 
   let filteredArray: Array<ToDo[]> = [];
 

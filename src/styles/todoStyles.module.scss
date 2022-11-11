@@ -5,7 +5,7 @@ $mainColour: #353535;
   flex-direction: column;
   align-items: center;
   max-width: 1000px;
-  width: 100%;
+  width: 95%;
 }
 
 .todoWrapper {
@@ -30,6 +30,7 @@ $mainColour: #353535;
 
   .icon {
     width: 24px;
+    min-width: 24px;
     height: 24px;
 
     display: flex;
@@ -51,6 +52,7 @@ $mainColour: #353535;
   .priority {
     user-select: none;
     width: 26px;
+    min-width: 26px;
     height: 26px;
     margin: 0 12px;
     color: inherit;
@@ -102,6 +104,17 @@ $mainColour: #353535;
     .editIcon,
     .completedButton {
       opacity: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .todoWrapper {
+    .icon {
+      margin: 0 2px;
+    }
+    .priority {
+      margin: 0 4px;
     }
   }
 }

@@ -1,11 +1,5 @@
-import styles from "../styles/todoStyles.module.scss";
-import {
-  Icons,
-  ToDo,
-  Priority,
-  PriorityColours,
-  PriorityNames,
-} from "../utils";
+import styles from '../styles/todoStyles.module.scss';
+import { Icons, ToDo, Priority, PriorityColours, PriorityNames } from '../utils';
 
 type ToDoDisplayProps = {
   todo: ToDo;
@@ -33,6 +27,7 @@ function ToDoDisplay(props: ToDoDisplayProps) {
       </div>
 
       <div
+        title={`${PriorityNames[todo.priority]} Priority`}
         className={styles.priority}
         style={{
           background: PriorityColours[todo.priority],
